@@ -62,7 +62,7 @@
 	directory mask = 0755
 
 [archivos]
-	comment = Archivos varios2
+	comment = Nuevo nombre jm asdasdasd
         browseable = Yes
         read only = No
         #valid users = publica

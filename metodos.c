@@ -7,17 +7,10 @@ void extraer(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por)
 void escrituraDestino(char *cad, char *dest);
 char *palabra_cambio(char *cadena);
 
-int main()
-{
-    char *aux = palabra_cambio("Nuevo nombre jm asdasdasd");
-    extraer("smb.conf", "probando.txt", "comment = Archivos varios", "\tcomment = Archivos varios2\n");
-    //printf(palabra_cambio("nueva palabra 5"));
-    printf(aux);
-}
-
 char *palabra_cambio(char *cadena)
 {
-    char buscar[1024] = "\tcomment = ";
+    char buscar[100];
+    strcat(buscar, "\tcomment = ");
     strcat(buscar, cadena);
     strcat(buscar,"\n");
     char *res = buscar;
@@ -66,4 +59,12 @@ void escrituraDestino(char *cad, char *dest)
     }
     fputs(cad, f);
     fclose(f);
+}
+
+int main()
+{
+    char *aux = palabra_cambio("Nuevo nombre jm asdasdasd");
+    extraer("smb.conf", "probando.txt", "comment = Archivos varios", aux);
+    //printf(palabra_cambio("Nuevo nombre jm asdasdasd"));
+    //printf(aux);
 }
