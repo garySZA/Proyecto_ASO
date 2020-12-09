@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador Samba</title>
+    <link rel="stylesheet" href="Styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Play&family=Source+Sans+Pro:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <form action="/cgi-bin/leerform" method="POST">
+        <div class="container">
+            <div class="container-renombrar">
+                <div class="container-titulo">
+                    <h3> Renombrar Recurso compartido </h3>
+                </div>
+                <div class="container-elementos">
+                    <div class="campo">
+                        <h3> Seleccionar recurso compartido: </h3>
+                    </div>
+                    <div class="campo opcion">
+                        <select name="recursos" id="combo">
+                            <option value="" selected="selected"> -Selecciona-</option>
+                            <option value="opcion1"> opcion1 </option>
+                            <option value="opcion1"> opcion2 </option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <h3> Seleccionar recurso compartido: </h3>
+                    </div>
+                    <div class="campo opcion">
+                        <input class="input" type="text" name="nombre" value="" placeholder="Ingrese un nuevo nombre"/>
+                    </div>
+                </div>
+                <div class="campo bton">
+                    <input type="submit" name="enviar" value="Cambiar nombre" class="boton"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
