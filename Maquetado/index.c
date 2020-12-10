@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <string.h>
 
-//Metodos utilizados para la generacion de la lista de recursos
+//  Metodos utilizados para la generacion de la lista de recursos
 void extraer(char *doc, char *dest, char *cadena_a_Buscar);
 void escrituraDestino(char *cad, char *dest);
 void quitarCorchetes();
@@ -76,10 +76,11 @@ int main(){
     printf("</form>");
     printf("</body>");
     printf("</html>");
-    
+    //      FIN BLOQUE HTML
     return 0;
 }
 
+//          BLOQUE QUE SE ENCARGA DE LA EXTRACCION Y VISUALIZACION DE LOS RECURSOS
 void extraer(char *doc, char *dest, char *cadena_a_Buscar)
 
 {

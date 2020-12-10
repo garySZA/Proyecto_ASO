@@ -35,15 +35,11 @@ void extraer(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por)
         char *aux = temp;
         if (strstr(aux, cadena_a_Buscar))
         {
-            printf("funciona");
-            printf(aux);
-            printf(reemplazar_por);
             escrituraDestino(reemplazar_por, dest);
         }
         else
         {
             escrituraDestino(aux, dest);
-            printf("no encuentra");
         }
     }
     fclose(f);
@@ -63,8 +59,13 @@ void escrituraDestino(char *cad, char *dest)
 
 int main()
 {
-    char *aux = palabra_cambio("Nuevo nombre jm asdasdasd");
-    extraer("smb.conf", "probando.txt", "comment = Archivos varios", aux);
+    //char *aux = palabra_cambio("Nuevo nombre jm asdasdasd");
+    char *probando = "nuevo"; 
+    char res[100] = "[";
+    strcat(res,probando);
+    strcat(res, "]\n");
+    printf(res);
+    extraer("smb.conf", "probando.txt", "[archivos]", res);
     //printf(palabra_cambio("Nuevo nombre jm asdasdasd"));
     //printf(aux);
 }
