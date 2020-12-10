@@ -29,7 +29,37 @@ void extraer(char *doc, char *dest, char *cadena_a_Buscar)
 
         if (strstr(aux, cadena_a_Buscar))
         {
-            fgets(temp2, 1024, (FILE *)f);
+            if(strstr(temp, "groups")){
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);    
+            }else if(strstr(temp, "users")){
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+            }else if(strstr(temp, "profiles")){
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                
+            }else{
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);    
+            }
+            
+            /*
+            */
         }
         else
         {
@@ -53,5 +83,5 @@ void escrituraDestino(char *cad, char *dest)
 
 int main()
 {
-    extraer("smb.conf", "prueba.txt", "Archivos varios");
+    extraer("prueba6.txt", "prueba7.txt", "[documentos]");
 }

@@ -13,6 +13,30 @@
         <div class="container">
             <div class="container-renombrar">
                 <div class="container-titulo">
+                    <h3> Borrar recurso compartido </h3>
+                </div>
+                <div class="container-elementos container-elementos-reducidos">
+                    <div class="campo">
+                        <h3> Seleccionar recurso compartido: </h3>
+                    </div>
+                    <div class="campo opcion">
+                        <select name="recursos" id="combo">
+                            <option value="" selected="selected"> -Selecciona-</option>
+                            <option value="opcion1"> opcion1 </option>
+                            <option value="opcion1"> opcion2 </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="campo bton">
+                    <input type="submit" name="enviar" value="Borrar" class="boton"/>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form action="/cgi-bin/leerform" method="POST">
+        <div class="container">
+            <div class="container-renombrar">
+                <div class="container-titulo">
                     <h3> Renombrar Recurso compartido </h3>
                 </div>
                 <div class="container-elementos">
@@ -35,7 +59,6 @@
                 </div>
                 <div class="campo bton">
                     <input type="submit" name="enviar" value="Cambiar nombre" class="boton"/>
-                    <a href="./index.html">volver</a>
                 </div>
             </div>
         </div>

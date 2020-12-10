@@ -45,7 +45,38 @@ int main(){
     printf("<link href=\"https://fonts.googleapis.com/css2?family=Play&family=Source+Sans+Pro:ital,wght@0,400;1,300&display=swap\" rel=\"stylesheet\">\n");
     printf("</head>\n");
     printf("<body>");
+    
+    //  INICIO FORM HU7
+
     printf("<form action=\"/cgi-bin/leerform\" method=\"POST\">");
+    printf("<div class=\"container\">");
+    printf("<div class=\"container-renombrar\">");
+    printf("<div class=\"container-titulo\">");
+    printf("<h3> Borrar Recurso </h3>");
+    printf("</div>");
+    printf("<div class=\"container-elementos container-elementos-reducidos\">");
+    printf("<div class=\"campo\">");
+    printf("<h3> Seleccionar recurso compartido: </h3>");
+    printf("</div>");
+    printf("<div class=\"campo opcion\">");
+    printf("<select name=\"recursos\" id=\"combo\">");
+    printf("<option value="" selected=\"selected\"> -Selecciona-</option>");
+    leerRecursosParaMostrar();
+    printf("</select>");
+    printf("</div>");
+    printf("</div>");
+    printf(" <div class=\"campo bton\">");
+    printf("<input type=\"submit\" name=\"enviar\" value=\"Borrar\" class=\"boton\"/>");
+    printf("</div>");
+    printf("</div>");
+    printf("</div>");
+    printf("</form>");
+
+    //  FIN FORM HU7
+
+    // INICIO FORM HU8
+
+    printf("<form action=\"/cgi-bin/leerform8\" method=\"POST\">");
     printf("<div class=\"container\">");
     printf("<div class=\"container-renombrar\">");
     printf("<div class=\"container-titulo\">");
@@ -61,6 +92,7 @@ int main(){
     leerRecursosParaMostrar();
     printf("</select>");
     printf("</div>");
+    printf("</div>");
     printf("<div class=\"campo\">");
     printf("<h3> Seleccionar recurso compartido: </h3>");
     printf("</div>");
@@ -74,6 +106,9 @@ int main(){
     printf("</div>");
     printf("</div>");
     printf("</form>");
+
+    //  FIN FORM HU8
+
     printf("</body>");
     printf("</html>");
     
