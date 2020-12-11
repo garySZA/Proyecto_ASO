@@ -83,5 +83,5 @@ void escrituraDestino(char *cad, char *dest)
 
 int main()
 {
-    extraer("prueba6.txt", "prueba7.txt", "[documentos]");
+    extraer("smb.conf", "pruebaCopia.txt", "[documentos]");
 }

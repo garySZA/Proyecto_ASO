@@ -2,14 +2,16 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include "./Libreria/milibreria.h"
+#include "./Libreria/miLibreria.c"
 #define MAXLEN 1024
 
-//      Metodos para cambiar nombre de recurso
 
-void extraer(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por);
+char *removerCaracteres(char *cadena, char *caracteres);
+
+//      METODOS PARA ELIMINAR RECURSO
+void extraer(char *doc, char *dest, char *cadena_a_Buscar);
 void escrituraDestino(char *cad, char *dest);
-char *palabra_cambio(char *cadena);
-//
 
 // Separar: separa datos del formulario
 
@@ -62,28 +64,17 @@ char *removerCaracteres(char *cadena, char *caracteres){
     }
     cadena[indiceCadenaLimpia] = 0;
 
-    //escrituraDestino(cadena, "limpio.txt");
-
     return cadena;
 }
 
-//      BLOQUE ENCARGADO DE CAMBIAR NOMBRE DE RECURSO
+//      INICIO BLOQUE DE METODOS PARA ELIMINAR UN RECURSO 
 
-char *palabra_cambio(char *cadena)
-{
-    char buscar[100];
-    strcat(buscar, "\tcomment = ");
-    strcat(buscar, cadena);
-    strcat(buscar,"\n");
-    char *res = buscar;
-    return res;
-}
-
-void extraer(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por)
+void extraer(char *doc, char *dest, char *cadena_a_Buscar)
 {
     unlink(dest);
 
     char temp[1024];
+    char temp2[1024];
 
     FILE *f;
     f = fopen(doc, "r");
@@ -92,20 +83,50 @@ void extraer(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por)
         printf("No se ha podido encontrar el archivo... \n");
         exit(1);
     }
+
+    int cant = 0;
+
     while (fgets(temp, 1024, (FILE *)f))
     {
         char *aux = temp;
+
         if (strstr(aux, cadena_a_Buscar))
         {
-            printf("funciona");
-            printf(aux);
-            printf(reemplazar_por);
-            escrituraDestino(reemplazar_por, dest);
+            if(strstr(temp, "groups")){
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);    
+            }else if(strstr(temp, "users")){
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+            }else if(strstr(temp, "profiles")){
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                
+            }else{
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);
+                fgets(temp2, 1024, (FILE *)f);    
+            }
+            
+            /*
+            */
         }
         else
         {
             escrituraDestino(aux, dest);
-            printf("no encuentra");
         }
     }
     fclose(f);
@@ -123,7 +144,7 @@ void escrituraDestino(char *cad, char *dest)
     fclose(f);
 }
 
-//      FIN DE BLOQUE ENCARGADO DE CAMBIAR NOMBRE DE RECURSO
+//      FIN BLOQUE DE METODOS PARA ELIMINAR UN RECURSO
 
 int main(void)
 {
@@ -164,29 +185,29 @@ int main(void)
     inputBuffer[i] = '\0';
     contentLength = i;
 
-    printf("<br>Cambio Realizado: ");
 
     separar(mensaje, inputBuffer, '=');
     separar(mensaje, inputBuffer, '&');
-    separar(usuario, inputBuffer, '=');
-    separar(usuario, inputBuffer, '&');
 
+    //      REMUEVE CARACTERES ESPECIALES DEL NOMBRE DE RECURSO
     removerCaracteres(mensaje, "%AD0");
 
-    //  PROCEDIENDO A CAMBIAR NOMBRE
-    char res[100] = "[";
-    strcat(res,usuario);
-    strcat(res, "]\n");
+    //      LLAMADA A LOS METODOS PARA LA ELIMINACION...
+    extraer("smb.conf", "pruebaEliminado.txt", mensaje);
 
-    //  CONCATENANDO [] PARA SU BUSQUEDA EN EL DOCUMENTO
-    char palabraABuscar[100] = "[";
-    strcat(palabraABuscar,mensaje);
-    strcat(palabraABuscar,"]");
 
-    //extraer("smb.conf", "probando.txt", palabraABuscar, res);
-    //
-
-    printf("<p> Recurso eliminado: %s",mensaje);
+    if(buscador("smb.conf",mensaje)){
+        //      REEMPLAZO DEL ARCHIVO SMB.CONF  
+        lanzador("pruebaEliminado.txt","smb.conf");
+        printf("<br>Cambio Realizado: ");
+        printf("Exitoso<br/>");
+        printf("<p> Recurso eliminado: %s",mensaje);
+    }else{
+        printf("<br>Cambio Realizado: ");
+        printf("Fallido<br/>");
+        printf("<p> Recurso compartido no encontrado");
+    }
+    printf("<br/>");
     printf("<a href=\"./index\">Volver a pagina principal</a>");
     return 0;
 }

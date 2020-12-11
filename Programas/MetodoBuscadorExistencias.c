@@ -28,7 +28,7 @@ bool buscador(char *doc, char *cadena_a_Buscar)
 
 int main()
 {
-    if(buscador("smb.conf", "probando")){
+    if(buscador("smb.conf", "documentos")){
         printf("funciona");
     }else{
         printf("No funciona :(");
