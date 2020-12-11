@@ -45,32 +45,33 @@ int main(){
     printf("<link href=\"https://fonts.googleapis.com/css2?family=Play&family=Source+Sans+Pro:ital,wght@0,400;1,300&display=swap\" rel=\"stylesheet\">\n");
     printf("</head>\n");
     printf("<body>");
-    
+
     //  INICIO FORM HU7
 
-    printf("<form action=\"/cgi-bin/leerform\" method=\"POST\">");
-    printf("<div class=\"container\">");
-    printf("<div class=\"container-renombrar\">");
-    printf("<div class=\"container-titulo\">");
-    printf("<h3> Borrar Recurso </h3>");
-    printf("</div>");
-    printf("<div class=\"container-elementos container-elementos-reducidos\">");
-    printf("<div class=\"campo\">");
-    printf("<h3> Seleccionar recurso compartido: </h3>");
-    printf("</div>");
-    printf("<div class=\"campo opcion\">");
-    printf("<select name=\"recursos\" id=\"combo\">");
-    printf("<option value="" selected=\"selected\"> -Selecciona-</option>");
+    printf("<form action=\"/cgi-bin/leerform7\" method=\"POST\">\n");
+    printf("<div class=\"container\">\n");
+    printf("<div class=\"container-renombrar\">\n");
+    printf("<div class=\"container-titulo\">\n");
+    printf("<h3> Borrar recurso compartido </h3>\n");
+    printf("</div>\n");
+    printf("<div class=\"container-elementos container-elementos-reducidos\">\n");
+    printf("<div class=\"campo\">\n");
+    printf("<h3> Seleccionar recurso compartido: </h3>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo opcion\">\n");
+    printf("<select name=\"recursos\" id=\"combo\">\n");
+    printf("<option value="" selected=\"selected\"> -Selecciona-</option>\n");
     leerRecursosParaMostrar();
-    printf("</select>");
-    printf("</div>");
-    printf("</div>");
-    printf(" <div class=\"campo bton\">");
-    printf("<input type=\"submit\" name=\"enviar\" value=\"Borrar\" class=\"boton\"/>");
-    printf("</div>");
-    printf("</div>");
-    printf("</div>");
-    printf("</form>");
+    printf("</select>\n");
+    printf("</div>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo bton\">\n");
+    printf("<input type=\"submit\" name=\"enviar\" value=\"Borrar\" class=\"boton\"/>\n");
+    printf("</div>\n");
+    printf("</div>\n");
+    printf("</div>\n");
+    printf("</form>\n");
+    
 
     //  FIN FORM HU7
 
@@ -88,7 +89,7 @@ int main(){
     printf("</div>");
     printf("<div class=\"campo opcion\">");
     printf("<select name=\"recursos\" id=\"combo\">");
-    printf("<option value="" selected=\"selected\"> -Selecciona-</option>");
+    printf("<option value=\"\" selected=\"selected\"> -Selecciona-</option>");
     leerRecursosParaMostrar();
     printf("</select>");
     printf("</div>");
@@ -219,9 +220,12 @@ void leerRecursosParaMostrar(){
         }
 
         while(fgets(temp, 1024, (FILE*) f)) {
-        printf("<option value=\"opcion1\">\n");
-        printf(temp);
-        printf("</option>\n");
+            char res[100] = "<option value=\"";
+            strcat(res,temp);
+            strcat(res,"\">\n");
+            printf(res);
+            printf(temp);
+            printf("</option>\n");
     }
         fclose(f);
 }

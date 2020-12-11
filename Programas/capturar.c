@@ -114,9 +114,15 @@ void leerRecursosParaMostrar(){
         }
 
         while(fgets(temp, 1024, (FILE*) f)) {
-        printf("<option value=\"opcion1\">\n");
-        printf(temp);
-        printf("</option>\n");
+            char res[100] = "<option value=\"";
+            strcat(res,temp);
+            strcat(res,"\">");
+            strcat(res,temp);
+            strcat(res, "</option>\n");
+            //printf("</option>\n");
+            printf(res);
+
+        //printf("<option value=\"opcion1\">\n");
     }
         fclose(f);
 }
@@ -127,6 +133,7 @@ int main()
     //como primer parametro esta el origen de donde se va obtener
     //segundo parametro es donde se va almacenar los nombres
     //tercer parametro: hace la busqueda fila por fila al que contenda '['
+    unlink("listaSucia.txt");
     extraer("/etc/samba/smb.conf", "listaSucia.txt", "[");
 
     //luego empezamos a quitar los corchetes con el sig metodo

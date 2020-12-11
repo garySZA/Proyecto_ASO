@@ -183,11 +183,10 @@ int main(void)
     strcat(palabraABuscar,mensaje);
     strcat(palabraABuscar,"]");
 
-    extraer("smb.conf", "probando.txt", palabraABuscar, res);
+    //extraer("smb.conf", "probando.txt", palabraABuscar, res);
     //
 
-    printf("<p> Nombre anterior: %s",mensaje);
-    printf("<p> Nuevo nombre: %s",usuario);
+    printf("<p> Recurso eliminado: %s",mensaje);
     printf("<a href=\"./index\">Volver a pagina principal</a>");
     return 0;
 }
