@@ -1,3 +1,7 @@
 los metodos para HU8 estan sacando informacion de un smb.conf local, NO el original
     -los cambios que realiza los guarda en un archivo llamado probando.txt
         -hay que reemplazar probando.txt por smb.conf original.
+
+IMPORTANTE:
+al cambiar nombre de recurso de "Archivo" a "archivo" se presenta un error
+    -Evitar poner nuevos nombres que contengan > %D0A algunos de esos elementos

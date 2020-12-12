@@ -192,16 +192,21 @@ int main(void)
     //      REMUEVE CARACTERES ESPECIALES DEL NOMBRE DE RECURSO
     removerCaracteres(mensaje, "%AD0");
 
-    //      LLAMADA A LOS METODOS PARA LA ELIMINACION...
-    extraer("smb.conf", "pruebaEliminado.txt", mensaje);
+        //      LLAMADA A LOS METODOS PARA LA ELIMINACION...
+        //      REEMPLAZAR RUTA PARA EL ARCHIVO ORIGINAL AQUI
+        extraer("smb.conf", "pruebaEliminado.txt", mensaje);
 
 
     if(buscador("smb.conf",mensaje)){
+
         //      REEMPLAZO DEL ARCHIVO SMB.CONF  
         lanzador("pruebaEliminado.txt","smb.conf");
         printf("<br>Cambio Realizado: ");
         printf("Exitoso<br/>");
         printf("<p> Recurso eliminado: %s",mensaje);
+
+        //      ELIMINACION DE ARCHIVO AUXILIAR     
+        unlink("pruebaEliminado.txt");
     }else{
         printf("<br>Cambio Realizado: ");
         printf("Fallido<br/>");

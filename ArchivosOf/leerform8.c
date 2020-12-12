@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include "./Libreria/milibreria.h"
+#include "./Libreria/miLibreria.c"
 #define MAXLEN 1024
 
 //      Metodos para cambiar nombre de recurso
@@ -97,15 +99,15 @@ void extraer(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por)
         char *aux = temp;
         if (strstr(aux, cadena_a_Buscar))
         {
-            printf("funciona");
-            printf(aux);
-            printf(reemplazar_por);
+            //printf("funciona");
+            //printf(aux);
+            //printf(reemplazar_por);
             escrituraDestino(reemplazar_por, dest);
         }
         else
         {
             escrituraDestino(aux, dest);
-            printf("no encuentra");
+            //printf("no encuentra");
         }
     }
     fclose(f);
@@ -164,14 +166,13 @@ int main(void)
     inputBuffer[i] = '\0';
     contentLength = i;
 
-    printf("<br>Cambio Realizado: ");
 
     separar(mensaje, inputBuffer, '=');
     separar(mensaje, inputBuffer, '&');
     separar(usuario, inputBuffer, '=');
     separar(usuario, inputBuffer, '&');
 
-    removerCaracteres(mensaje, "%AD0");
+    removerCaracteres(mensaje, "%D0A");
 
     //  PROCEDIENDO A CAMBIAR NOMBRE
     char res[100] = "[";
@@ -183,11 +184,28 @@ int main(void)
     strcat(palabraABuscar,mensaje);
     strcat(palabraABuscar,"]");
 
-    extraer("smb.conf", "probando.txt", palabraABuscar, res);
     //
 
-    printf("<p> Nombre anterior: %s",mensaje);
-    printf("<p> Nuevo nombre: %s",usuario);
+    if(buscador("smb.conf", mensaje)){
+        //      PROCEDIENDO AL CAMBIO DE NOMBRE DEL RECURSO
+        //      REEMPLAZAR RUTA PARA EL ARCHIVO ORIGINAL AQUI
+        extraer("smb.conf", "probando.txt", palabraABuscar, res);
+
+        //      REEMPLAZO DEL ARCHIVO SMB.CONF  
+        lanzador("probando.txt","smb.conf");
+        printf(mensaje);
+        printf("<br>Cambio Realizado: Exitoso");
+        printf("<p> Nombre anterior: %s",mensaje);
+        printf("<p> Nuevo nombre: %s",usuario);
+
+        //      ELIMINACION DE ARCHIVO AUXILIAR     
+        unlink("probando.txt");
+    }else{
+        printf("<br>Cambio Realizado: Fallido");
+        printf("<p> Nombre del recurso: %s",mensaje);
+        printf("<p> nombre de recurso no existe...");
+    }
+    printf("<br/>");
     printf("<a href=\"./index\">Volver a pagina principal</a>");
     return 0;
 }

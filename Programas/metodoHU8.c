@@ -60,7 +60,7 @@ void escrituraDestino(char *cad, char *dest)
 int main()
 {
     //char *aux = palabra_cambio("Nuevo nombre jm asdasdasd");
-    char *probando = "nuevo"; 
+    char *probando = "Archivos"; 
     char res[100] = "[";
     strcat(res,probando);
     strcat(res, "]\n");
@@ -68,4 +68,5 @@ int main()
     extraer("smb.conf", "probando.txt", "[archivos]", res);
     //printf(palabra_cambio("Nuevo nombre jm asdasdasd"));
     //printf(aux);
+
 }
