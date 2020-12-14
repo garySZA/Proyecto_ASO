@@ -43,6 +43,20 @@ int main(){
     printf("<link rel=\"stylesheet\" href=\"Styles.css\">\n");
     printf("<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\">\n");
     printf("<link href=\"https://fonts.googleapis.com/css2?family=Play&family=Source+Sans+Pro:ital,wght@0,400;1,300&display=swap\" rel=\"stylesheet\">\n");
+    printf("<style>\n");
+    printf("body{background: #355C7D;  /* fallback for old browsers */background: -webkit-linear-gradient(to right, #C06C84, #6C5B7B, #355C7D);  /* Chrome 10-25, Safari 5.1-6 */background: linear-gradient(to right, #C06C84, #6C5B7B, #355C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */color: silver;font-family: 'Play', sans-serif;}\n");
+    printf(".container { display: flex;justify-content: center;background: transparent;margin: 15px;}\n");
+    printf(".container-elementos {display: grid;grid-template-columns: repeat(2, 1fr);grid-template-rows: repeat(2, 1fr);column-gap: 50px;row-gap: 10px;}\n");
+    printf(".container-elementos-reducidos{display: grid;grid-template-columns: repeat(2, 1fr);grid-template-rows: repeat(1, 1fr);column-gap: 50px;row-gap: 10px;}\n");
+    printf(".campo {justify-content: center;align-items: center;}\n");
+    printf(".bton {display: flex;}\n");
+    printf(".opcion {margin-top: 15px;}\n");
+    printf("#combo, .input{width: 200px;border: solid #0096c7;}\n");
+    printf(".container-titulo {display: flex;justify-content: center;}\n");
+    printf(".boton {border: #0096c7 solid;width: 200px;height: 40px;border-radius: 10px;transition: .8s;margin: 15px;}\n");
+    printf(".boton:hover {background-color: #0096c7;color: cornsilk;}\n");
+    printf(".container-renombrar {width: 800px;border: solid silver;display: flex;flex-direction: column;justify-content: center;align-items: center;}\n");
+    printf("</style>\n");
     printf("</head>\n");
     printf("<body>");
 
@@ -93,9 +107,8 @@ int main(){
     leerRecursosParaMostrar();
     printf("</select>");
     printf("</div>");
-    printf("</div>");
     printf("<div class=\"campo\">");
-    printf("<h3> Seleccionar recurso compartido: </h3>");
+    printf("<h3> Ingresar nuevo nombre: </h3>");
     printf("</div>");
     printf("<div class=\"campo opcion\">");
     printf(" <input class=\"input\" type=\"text\" name=\"nombre\" value=\"\" placeholder=\"Ingrese un nuevo nombre\"/>");
