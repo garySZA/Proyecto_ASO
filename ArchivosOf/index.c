@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include "./Libreria/milibreria.h"
+#include "./Libreria/miLibreria.c"
 
 //Metodos utilizados para la generacion de la lista de recursos
 void extraer(char *doc, char *dest, char *cadena_a_Buscar);
@@ -10,6 +12,9 @@ void quitarCorchetes();
 char *removerCaracteres(char *cadena, char *caracteres);
 void leerRecursosParaMostrar();
 //
+
+//      METODOS PARA HU6
+void leerRecursosParaMostrarHTML(char *documento);
 
 int main(){
     /*
@@ -29,6 +34,10 @@ int main(){
     //una vez que se tienen los nombres de los recursos listos para mostrar procedemos a ponerlos en formato html con el sig metodo.
     //leerRecursosParaMostrar();
 
+    //Generar rutas de los recursos
+    //reemplazar ruta smb.conf aqui
+    extraerHU6("smb.conf", "rutas.txt","path");
+
     /*
             BLOQUE HTML
     */
@@ -43,6 +52,7 @@ int main(){
     printf("<link rel=\"stylesheet\" href=\"Styles.css\">\n");
     printf("<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\">\n");
     printf("<link href=\"https://fonts.googleapis.com/css2?family=Play&family=Source+Sans+Pro:ital,wght@0,400;1,300&display=swap\" rel=\"stylesheet\">\n");
+    //      BLOQUE ESTILOS
     printf("<style>\n");
     printf("body{background: #355C7D;  /* fallback for old browsers */background: -webkit-linear-gradient(to right, #C06C84, #6C5B7B, #355C7D);  /* Chrome 10-25, Safari 5.1-6 */background: linear-gradient(to right, #C06C84, #6C5B7B, #355C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */color: silver;font-family: 'Play', sans-serif;}\n");
     printf(".container { display: flex;justify-content: center;background: transparent;margin: 15px;}\n");
@@ -56,9 +66,63 @@ int main(){
     printf(".boton {border: #0096c7 solid;width: 200px;height: 40px;border-radius: 10px;transition: .8s;margin: 15px;}\n");
     printf(".boton:hover {background-color: #0096c7;color: cornsilk;}\n");
     printf(".container-renombrar {width: 800px;border: solid silver;display: flex;flex-direction: column;justify-content: center;align-items: center;}\n");
+    printf(".contenedor-ruta, .contenedor-nombre{display: flex;flex-direction: column;width: 200px;}\n");
+    printf(".contenedor-nombre-ruta {width: 60%; height: 150px;border: 2px dotted #000;background-color: transparent;overflow: auto;display: flex;}\n");
+    printf(".parrafo {height: 15px;margin: 5px;border-bottom: solid silver 2px;padding: 2px;}\n");
     printf("</style>\n");
+    //      FIN BLOQUE ESTILOS
+
     printf("</head>\n");
     printf("<body>");
+
+    //  INICIO FORM HU6
+
+    printf("<form action=\"/cgi-bin/leerform6\" method=\"POST\">\n");
+    printf("<div class=\"container\">\n");
+    printf("<div class=\"container-renombrar\">\n");
+    printf("<div class=\"container-titulo\">\n");
+    printf("<h3> Modificar recurso compartido </h3>\n");
+    printf("</div>\n");
+    printf("<div class=\"contenedor-nombre-ruta\">\n");
+    printf("<div class=\"contenedor-nombre\">\n");
+
+    //aqui entra los nombres de los recursos, llamar a metodo aqui
+    leerRecursosParaMostrarHTML("limpio.txt");
+
+    printf("</div>\n");
+    printf("<div class=\"contenedor-ruta\">\n");
+
+    //aqui entran las rutas de los recursos, llamar a metodo aqui
+    leerRecursosParaMostrarHTML("rutas.txt");
+    
+    printf("</div>\n");
+    printf("</div>\n");
+    printf("<div class=\"container-elementos\">\n");
+    printf("<div class=\"campo\">\n");
+    printf("<h3> Seleccionar recurso compartido: </h3>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo opcion\">\n");
+    printf("<select name=\"recursos\" id=\"combo\">\n");
+    printf("<option value="" selected=\"selected\"> -Selecciona-</option>\n");
+    printf("<option value=\"lectura\"> Solo lectura </option> </option>\n");
+    printf("<option value=\"ambos\"> Lectura y escritura </option>\n");
+    printf("</select>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo\">\n");
+    printf("<h3> Ingresar nueva ruta: </h3>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo opcion\">\n");
+    printf("<input class=\"input\" type=\"text\" name=\"nombre\" value=\"\" placeholder=\"Nueva ruta\"/>\n");
+    printf("</div>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo bton\">\n");
+    printf("<input type=\"submit\" name=\"enviar\" value=\"Guardar cambios\" class=\"boton\"/>\n");
+    printf("</div>\n");
+    printf("</div>\n");
+    printf("</div>\n");
+    printf("</form>\n");
+
+    //  FIN FORM HU6
 
     //  INICIO FORM HU7
 
@@ -239,6 +303,28 @@ void leerRecursosParaMostrar(){
             printf(res);
             printf(temp);
             printf("</option>\n");
+    }
+        fclose(f);
+}
+
+//      METODOS PARA HU6
+void leerRecursosParaMostrarHTML(char *documento){
+    char temp[1024];
+        FILE *f;
+        f = fopen(documento, "r");
+        if(f == NULL){
+                printf("No se ha podido abrir el fichero...\n");
+                exit(1);
+        }
+
+        while(fgets(temp, 1024, (FILE*) f)) {
+            char res[100] = " <p class=\"parrafo\">";
+            strcat(res,temp);
+            strcat(res, "</option>\n");
+            //printf("</option>\n");
+            printf(res);
+
+        //printf("<option value=\"opcion1\">\n");
     }
         fclose(f);
 }

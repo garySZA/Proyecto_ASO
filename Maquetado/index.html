@@ -9,6 +9,57 @@
     <link href="https://fonts.googleapis.com/css2?family=Play&family=Source+Sans+Pro:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
     </head>
 <body>
+    <!-- HU6-->
+    <form action="/cgi-bin/leerform6" method="POST">
+        <div class="container">
+            <div class="container-renombrar">
+                <div class="container-titulo">
+                    <h3> Renombrar Recurso compartido </h3>
+                </div>
+                <div class="contenedor-nombre-ruta">
+                    <div class="contenedor-nombre">
+                        <p class="parrafo">profiles</p>
+                        <p class="parrafo">users</p>
+                        <p class="parrafo">groups</p>
+                        <p class="parrafo">printers</p>
+                        <p class="parrafo">documentos</p>
+                        <p class="parrafo">archivos</p>
+                    </div>
+                    <div class="contenedor-ruta">
+                        <p class="parrafo">path = %H</p>
+                        <p class="parrafo">path = /home</p>
+                        <p class="parrafo">path = /home/groups</p>
+                        <p class="parrafo">path = /var/tmp</p>
+                        <p class="parrafo">path = /opt/documentos</p>
+                        <p class="parrafo">path = /opt/otros</p>
+                        
+                    </div>
+                </div>
+                <div class="container-elementos">
+                    <div class="campo">
+                        <h3> Seleccionar recurso compartido: </h3>
+                    </div>
+                    <div class="campo opcion">
+                        <select name="recursos" id="combo">
+                            <option value="" selected="selected"> -Selecciona-</option>
+                            <option value="opcion1"> Solo lectura </option> </option>
+                            <option value="opcion1"> Lectura y escritura </option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <h3> Ingresar nueva ruta: </h3>
+                    </div>
+                    <div class="campo opcion">
+                        <input class="input" type="text" name="nombre" value="" placeholder="Ingrese un nuevo nombre"/>
+                    </div>
+                </div>
+                <div class="campo bton">
+                    <input type="submit" name="enviar" value="Guardar cambios" class="boton"/>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- HU7-->
     <form action="/cgi-bin/leerform" method="POST">
         <div class="container">
             <div class="container-renombrar">
@@ -33,6 +84,7 @@
             </div>
         </div>
     </form>
+    <!-- HU8-->
     <form action="/cgi-bin/leerform" method="POST">
         <div class="container">
             <div class="container-renombrar">

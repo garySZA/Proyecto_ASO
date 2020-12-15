@@ -81,3 +81,25 @@ body{
     justify-content: center;
     align-items: center;
 }
+
+.contenedor-ruta, .contenedor-nombre{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+.contenedor-nombre-ruta {
+    width: 60%;
+    height: 150px;
+    border: 2px dotted #000;
+    background-color: transparent;
+    overflow: auto;
+    display: flex;
+}
+
+.parrafo {
+    height: 15px;
+    margin: 5px;
+    border-bottom: solid silver 2px;
+    padding: 2px;
+}
