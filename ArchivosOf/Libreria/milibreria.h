@@ -13,3 +13,6 @@ bool buscador(char *doc, char *cadena_a_Buscar);
 //tercer parametro> palabra a buscar fila por fila
 void extraerHU6(char *doc, char *dest, char *cadena_a_Buscar);
 void escrituraDestinoHU6(char *cad, char *dest);
+
+//reemplazador de palabras
+char *replace_str(char *str, char *orig, char *rep);
