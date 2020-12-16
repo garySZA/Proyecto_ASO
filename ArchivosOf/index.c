@@ -75,6 +75,47 @@ int main(){
     printf("</head>\n");
     printf("<body>");
 
+    //  INICIO FORM HU5
+
+    printf("<form action=\"/cgi-bin/leerform5\" method=\"POST\">\n");
+    printf("<div class=\"container\">\n");
+    printf("<div class=\"container-renombrar\">\n");
+    printf("<div class=\"container-titulo\">\n");
+    printf("<h3> Agregar nuevo recurso compartido </h3>\n");
+    printf("</div>\n");
+    printf("<div class=\"container-elementos\">\n");
+    printf("<div class=\"campo\">\n");
+    printf("<h3> Nombre del recurso: </h3>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo opcion\">\n");
+    printf("<input class=\"input\" type=\"text\" name=\"nombre\" value=\"\" placeholder=\"Ingrese un nombre valido\"/>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo\">\n");
+    printf("<h3> Permisos del recurso nuevo: </h3>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo opcion\">\n");
+    printf("<select name=\"recursos\" id=\"combo\">\n");
+    printf("<option value=\"\" selected=\"selected\"> -Selecciona-</option>\n");
+    printf("<option value=\"lectura\"> Solo lectura </option> </option>\n");
+    printf("<option value=\"ambos\"> Lectura y escritura </option>\n");
+    printf("</select>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo\">\n");
+    printf("<h3> Ingresar ruta del recurso nuevo: </h3>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo opcion\">\n");
+    printf("<input class=\"input\" type=\"text\" name=\"nombre\" value=\"\" placeholder=\"Ingrese una ruta valida\"/>\n");
+    printf("</div>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo bton\">\n");
+    printf("<input type=\"submit\" name=\"enviar\" value=\"crear\" class=\"boton\"/>\n");
+    printf("</div>\n");
+    printf("</div>\n");
+    printf("</div>\n");
+    printf("</form>\n");
+
+    //  FIN FORM HU5
+
     //  INICIO FORM HU6
 
     printf("<form action=\"/cgi-bin/leerform6\" method=\"POST\">\n");
