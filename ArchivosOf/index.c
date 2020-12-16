@@ -69,11 +69,75 @@ int main(){
     printf(".contenedor-ruta, .contenedor-nombre{display: flex;flex-direction: column;width: 200px;}\n");
     printf(".contenedor-nombre-ruta {width: 60%; height: 150px;border: 2px dotted #000;background-color: transparent;overflow: auto;display: flex;}\n");
     printf(".parrafo {height: 15px;margin: 5px;border-bottom: solid silver 2px;padding: 2px;}\n");
+    printf(".container-elementos-status{display: grid;grid-template-columns: repeat(2, 1fr);grid-template-rows: repeat(2, 1fr);column-gap: 50px;}\n");
+    printf(".titulo-servidor > h3{font-size: 40px;margin: 0;margin-top: 15px;}\n");
+    printf("@keyframes changeColors {0% {opacity: 0.2;}25% {opacity: 0.5;}50% {opacity: 1;}75% {opacity: 0.5;}100% {opacity: 0.2;}}\n");
+    printf(".titulo-servidor {animation: changeColors 2s infinite ease-in;}\n");
     printf("</style>\n");
     //      FIN BLOQUE ESTILOS
 
     printf("</head>\n");
     printf("<body>");
+
+    //  INICIO BLOQUE PARA HU1 Y HU2
+
+    printf("<div class=\"container\">\n");
+    printf("<div class=\"container-renombrar\">\n");
+    printf("<div class=\"container-titulo titulo-servidor\">\n");
+    printf("<h3> Servidor Samba </h3>\n");
+    printf("</div>\n");
+    printf("<div class=\"container-elementos-status\">\n");
+    printf("<div class=\"campo\">\n");
+    printf("<h3> Situacion del servidor: </h3>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo opcion2\">\n");
+    //  llamar a metodo que verifica si esta instalado o no, en la sig linea, reemplanzado
+    printf("<h3> Instalado/No instalado </h3>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo\">\n");
+    printf("<h3> Status: </h3>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo opcion2\">\n");
+    //  llamar a metodo que retorna si el servidor esta activo o no en la sig linea reemplazando
+    printf("<h3> Activo/Inactivo </h3>\n");
+    printf("</div>\n");
+    printf("</div>\n");
+    printf("</div>\n");
+    printf("</div>\n");
+
+    //  FIN BLOQUE PARA HU1 Y HU2
+
+    //  INICIO FORM HU3
+
+    printf("<form action=\"/cgi-bin/leerform3\" method=\"POST\">\n");
+    printf("<div class=\"container\">\n");
+    printf("<div class=\"container-renombrar\">\n");
+    printf("<div class=\"container-titulo\">\n");
+    printf("<h3> Cambiar grupo de trabajo </h3>\n");
+    printf("</div>\n");
+    printf("<div class=\"container-elementos\">\n");
+    printf("<div class=\"campo\">\n");
+    printf("<h3> Grupo de trabajo: </h3>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo opcion2\">\n");
+    // llamar a metodo que devuelva valor de workgroup en la sig fila reemplazando la que esta
+    printf("<h3> LABINFSIS </h3>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo\">\n");
+    printf("<h3> Nuevo grupo de trabajo: </h3>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo opcion\">\n");
+    printf("<input class=\"input\" type=\"text\" name=\"nombre\" value=\"\" placeholder=\"Ingrese un nuevo grupo\"/>\n");
+    printf("</div>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo bton\">\n");
+    printf("<input type=\"submit\" name=\"enviar\" value=\"Cambiar\" class=\"boton\"/>\n");
+    printf("</div>\n");
+    printf("</div>\n");
+    printf("</div>\n");
+    printf("</form>\n");
+
+    // FIN FORM HU3
 
     //  INICIO FORM HU5
 

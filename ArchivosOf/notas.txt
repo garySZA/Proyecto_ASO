@@ -5,3 +5,5 @@ los metodos para HU8 estan sacando informacion de un smb.conf local, NO el origi
 IMPORTANTE:
 al cambiar nombre de recurso de "Archivo" a "archivo" se presenta un error
     -Evitar poner nuevos nombres que contengan > %D0A algunos de esos elementos
+
+-crear metodo que valide una ruta que se ingrese por el programa

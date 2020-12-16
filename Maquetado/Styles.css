@@ -103,3 +103,38 @@ body{
     border-bottom: solid silver 2px;
     padding: 2px;
 }
+
+.container-elementos-status{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    
+    column-gap: 50px;
+}
+
+.titulo-servidor > h3{
+    font-size: 40px;
+    margin: 0;
+    margin-top: 15px;
+}
+
+@keyframes changeColors {
+    0% {
+        opacity: 0.2;
+    }
+    25% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0.2;
+    }
+}
+.titulo-servidor {
+    animation: changeColors 2s infinite ease-in;
+}
