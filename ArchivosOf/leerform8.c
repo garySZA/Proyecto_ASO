@@ -141,7 +141,19 @@ int main(void)
     char sig[80];
 
     printf ("Content-type:text/html\n\n");
+    printf("<head>\n");
     printf("<TITLE>Response</TITLE>\n");
+
+    printf("<link href=\"https://fonts.googleapis.com/css2?family=Play&family=Source+Sans+Pro:ital,wght@0,400;1,300&display=swap\" rel=\"stylesheet\">\n");
+    printf("<style>\n");
+    printf("body{background: #355C7D;  /* fallback for old browsers */background: -webkit-linear-gradient(to right, #C06C84, #6C5B7B, #355C7D);  /* Chrome 10-25, Safari 5.1-6 */background: linear-gradient(to right, #C06C84, #6C5B7B, #355C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */color: silver;font-family: 'Play', sans-serif;}\n");
+    printf(".container { display: flex;justify-content: center;background: transparent;margin: 15px;}\n");
+    printf(".container-renombrar {width: 800px;border: solid silver;display: flex;flex-direction: column;justify-content: center;align-items: center;}\n");
+    printf(".boton {border: #0096c7 solid;width: 200px;height: 40px;border-radius: 10px;transition: .8s;margin: 15px;}\n");
+    printf(".boton:hover {background-color: #0096c7;color: cornsilk;}\n");
+    printf("</style>\n");
+    printf("</head>\n");
+
     lenstr = getenv("CONTENT_LENGTH");
     //lenstr = (char *)getenv("CONTENT_LENGTH");
     if (lenstr!= NULL)
@@ -186,6 +198,9 @@ int main(void)
 
     //
 
+    printf("<div class=\"container\">\n");
+    printf("<div class=\"container-renombrar\">\n");
+
     if(buscador("smb.conf", mensaje)){
         //      PROCEDIENDO AL CAMBIO DE NOMBRE DEL RECURSO
         //      REEMPLAZAR RUTA PARA EL ARCHIVO ORIGINAL AQUI
@@ -194,6 +209,7 @@ int main(void)
         //      REEMPLAZO DEL ARCHIVO SMB.CONF  
         lanzador("probando.txt","smb.conf");
         printf(mensaje);
+
         printf("<br>Cambio Realizado: Exitoso");
         printf("<p> Nombre anterior: %s",mensaje);
         printf("<p> Nuevo nombre: %s",usuario);
@@ -206,6 +222,11 @@ int main(void)
         printf("<p> nombre de recurso no existe...");
     }
     printf("<br/>");
-    printf("<a href=\"./index\">Volver a pagina principal</a>");
+    printf("<div class=\"position-fixed\">\n");
+    printf("<button class=\"boton\" onclick=\"location.href='./index'\">Volver</button>\n");
+    printf("</div>\n");
+
+    printf("</div>\n");
+    printf("</div>\n");
     return 0;
 }
