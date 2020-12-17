@@ -138,3 +138,10 @@ body{
 .titulo-servidor {
     animation: changeColors 2s infinite ease-in;
 }
+
+.position-fixed {
+    width: 250px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}

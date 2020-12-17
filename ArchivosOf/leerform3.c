@@ -72,17 +72,9 @@ int main(void)
 
     separar(mensaje, inputBuffer, '=');
     separar(mensaje, inputBuffer, '&');
-    separar(usuario, inputBuffer, '=');
-    separar(usuario, inputBuffer, '&');
-    separar(clave, inputBuffer, '=');
-    separar(clave, inputBuffer, '&');
-
-    char *aux = replace_str(clave, "%2F", "/");
     
     printf("<br>Cambio realizado:");
-    printf("<p> Nombre del recurso: %s",mensaje);
-    printf("<p> Permisos del recurso: %s",usuario);
-    printf("<p> Ruta: %s",aux);
+    printf("<p> Nuevo grupo de trabajo: %s",mensaje);
     printf("<br/>");
     printf("<a href=\"./index\">Volver a pagina principal</a>");
 

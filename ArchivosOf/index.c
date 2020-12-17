@@ -73,6 +73,7 @@ int main(){
     printf(".titulo-servidor > h3{font-size: 40px;margin: 0;margin-top: 15px;}\n");
     printf("@keyframes changeColors {0% {opacity: 0.2;}25% {opacity: 0.5;}50% {opacity: 1;}75% {opacity: 0.5;}100% {opacity: 0.2;}}\n");
     printf(".titulo-servidor {animation: changeColors 2s infinite ease-in;}\n");
+    printf(".position-fixed {width: 250px;position: fixed;bottom: 0;right: 0;}\n");
     printf("</style>\n");
     //      FIN BLOQUE ESTILOS
 
@@ -291,6 +292,11 @@ int main(){
     printf("</form>");
 
     //  FIN FORM HU8
+
+    //  boton para actualizar la pagina
+    printf("<div class=\"position-fixed\">\n");
+    printf("<button class=\"boton\" onclick=\"location.href='./index'\">Guardar cambios</button>\n");
+    printf("</div>\n");
 
     printf("</body>");
     printf("</html>");
