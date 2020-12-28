@@ -1,0 +1,153 @@
+
+[
+	comment = 
+	path = 
+	browseable = Yes
+	read only = 
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
+
+[
+	comment = 
+	path = 
+	browseable = Yes
+	read only = 
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
+
+[
+	comment = 
+	path = 
+	browseable = Yes
+	read only = 
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
+
+[
+	comment = 
+	path = 
+	browseable = Yes
+	read only = 
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
+
+[
+	comment = 
+	path = 
+	browseable = Yes
+	read only = 
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
+
+[
+	comment = 
+	path = 
+	browseable = Yes
+	read only = 
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
+
+[
+	comment = 
+	path = 
+	browseable = Yes
+	read only = 
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
+
+[
+	comment = 
+	path = 
+	browseable = Yes
+	read only = 
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
+
+[
+	comment = 
+	path = 
+	browseable = Yes
+	read only = 
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
+
+[
+	comment = 
+	path = 
+	browseable = Yes
+	read only = 
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
+
+[
+	comment = 
+	path = 
+	browseable = Yes
+	read only = 
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
+
+[
+	comment = 
+	path = 
+	browseable = Yes
+	read only = 
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
+
+[
+	comment = 
+	path = 
+	browseable = Yes
+	read only = 
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
+
+[
+	comment = 
+	path = 
+	browseable = Yes
+	read only = 
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
+
+[
+	comment = 
+	path = 
+	browseable = Yes
+	read only = 
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
+
+[
+	comment = 
+	path = 
+	browseable = Yes
+	read only = 
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
+
+[
+	comment = 
+	path = 
+	browseable = Yes
+	read only = 
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755

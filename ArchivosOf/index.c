@@ -156,6 +156,12 @@ int main(){
     printf("<input class=\"input\" type=\"text\" name=\"nombre\" value=\"\" placeholder=\"Ingrese un nombre valido\"/>\n");
     printf("</div>\n");
     printf("<div class=\"campo\">\n");
+    printf("<h3> Comentario: </h3>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo opcion\">\n");
+    printf("<input class=\"input\" type=\"text\" name=\"nombre\" value=\"\" placeholder=\"Ingrese un comentario\"/>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo\">\n");
     printf("<h3> Permisos del recurso nuevo: </h3>\n");
     printf("</div>\n");
     printf("<div class=\"campo opcion\">\n");

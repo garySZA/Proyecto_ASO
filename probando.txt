@@ -77,3 +77,55 @@
 #	force group = ntadmin
 #	create mask = 0664
 #	directory mask = 0775
+
+[
+	comment = 
+	path = 
+	browseable = Yes
+	read only = 
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
+[
+	comment = 
+	path = 
+	browseable = Yes
+	read only = 
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
+[
+	comment = 
+	path = 
+	browseable = Yes
+	read only = 
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
+
+[
+	comment = 
+	path = 
+	browseable = Yes
+	read only = 
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
+
+[Especia]
+	comment = archivos especiales
+	path = /home/garys/Desktop/
+	browseable = Yes
+	read only = Yes
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
+
+[Especial]
+	comment = archivos especiales
+	path = /home/garys/Desktop/
+	browseable = Yes
+	read only = Yes
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755
