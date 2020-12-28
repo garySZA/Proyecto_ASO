@@ -63,9 +63,9 @@
 
 [archivos]
         comment = Archivos varios
-		path = /opt/otros
+	path = /etc/Desktop/home
         browseable = Yes
-	read only = No
+        read only = No
         #valid users = publica
         create mask = 0664
         directory mask = 0755
@@ -77,55 +77,3 @@
 #	force group = ntadmin
 #	create mask = 0664
 #	directory mask = 0775
-
-[
-	comment = 
-	path = 
-	browseable = Yes
-	read only = 
-	#valid users = publica
-	create mask = 0664
-	directory mask = 0755
-[
-	comment = 
-	path = 
-	browseable = Yes
-	read only = 
-	#valid users = publica
-	create mask = 0664
-	directory mask = 0755
-[
-	comment = 
-	path = 
-	browseable = Yes
-	read only = 
-	#valid users = publica
-	create mask = 0664
-	directory mask = 0755
-
-[
-	comment = 
-	path = 
-	browseable = Yes
-	read only = 
-	#valid users = publica
-	create mask = 0664
-	directory mask = 0755
-
-[Especia]
-	comment = archivos especiales
-	path = /home/garys/Desktop/
-	browseable = Yes
-	read only = Yes
-	#valid users = publica
-	create mask = 0664
-	directory mask = 0755
-
-[Especial]
-	comment = archivos especiales
-	path = /home/garys/Desktop/
-	browseable = Yes
-	read only = Yes
-	#valid users = publica
-	create mask = 0664
-	directory mask = 0755

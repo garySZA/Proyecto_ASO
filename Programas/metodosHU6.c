@@ -106,10 +106,10 @@ int main()
     
 
     //  PRUEBAS PARA CAMBIAR RUTA
-    //char *probando = "/etc/Desktop\n";
-    //extraer("smb.conf", "probando.txt", "[archivos]", probando);
+    char *probando = "/etc/Desktop/home\n";
+    extraer("smb.conf", "probando.txt", "[archivos]", probando);
     
-
+    /*
     //  PRUEBAS PARA CAMBIAR PERMISOS
     char *probando = "Yes";
     char *aux = "No";
@@ -127,5 +127,5 @@ int main()
     extraer2("smb.conf", "probando.txt", "[archivos]", aux);
     extraer2("smb.conf", "probando.txt", "[archivos]", probando);
     extraer2("smb.conf", "probando.txt", "[archivos]", aux);
-    
+    */
 }
