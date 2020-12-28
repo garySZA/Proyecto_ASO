@@ -16,3 +16,6 @@ void escrituraDestinoHU6(char *cad, char *dest);
 
 //reemplazador de palabras
 char *replace_str(char *str, char *orig, char *rep);
+
+//metodo que verifica un directorio
+bool verifDirectorio(char *directorio);

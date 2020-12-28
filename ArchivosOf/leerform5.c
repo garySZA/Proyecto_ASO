@@ -2,10 +2,15 @@
 #include <stdlib.h>
 #include "./Libreria/milibreria.h"
 #include "./Libreria/miLibreria.c"
+#include <stdbool.h>
+#include <string.h>
+#include <unistd.h>
 #define MAXLEN 1024
 
 //  METODOS PARA LA HU5
 void extraer(char *doc, char *nombre, char *comentario, char *ruta, char *permiso);
+
+bool verifDirectorios(char *directorio);
 
 //  BLOQUE DE METODOS PARA LA HU5
 
@@ -48,7 +53,32 @@ void extraer(char *doc, char *nombre, char *comentario, char *ruta, char *permis
     fclose ( fp );
 }
 
-//  FIN BLOQUE METODOS HU5
+//  FIN BLOQUE METODOS 
+
+bool verifDirectorios(char *directorio)
+{
+    bool esCorrecto = false;
+    char ruta[100];
+    strcat(ruta, directorio);
+    strcat(ruta, "exp.txt");
+
+	FILE *archivo;
+	char caracter;
+	
+	archivo = fopen(ruta,"a");
+	
+	if (archivo == NULL){
+
+            esCorrecto = false;
+    }
+    else{
+            esCorrecto = true;
+        }
+        
+        unlink("exp.txt");
+	
+    return esCorrecto;
+}
 
 // Separar: separa datos del formulario
 
@@ -147,32 +177,38 @@ int main(void)
 
     printf("<br>Cambio realizado:");
 
+    bool direc = verifDirectorios("/home/garys/Desktop/");
     
     //  INVOCANDO AL METOODO>
     //  primer if verifica si existe algun recurso con el nombre ingresado
     //  implementar if para controlar ruta
+    
+
     if(buscador(archivoSmb, mensaje)){
         printf(" Fallido, ya existe un recurso con el nombre ingresado");
     }else
     {
         printf(" Exitoso\n");
-        char *shellLimpio = replace_str(shell, "%2F", "/");
-        printf("<p> Ruta: %s",shellLimpio);
+        
+        char *ruta = replace_str(shell, "%2F", "/");
+        printf("<p> Ruta: %s", ruta);
         printf("<br/>");
         printf("<p> Nombre del recurso: %s",mensaje);
-        printf("<p> Comentario: %s",replace_str(usuario, "+", " "));
-        if(strcmp(aux,"ambos") == 0){
+        printf("<p> Comentario: %s", usuario);
+
+        if(strcmp(clave,"ambos") == 0){
             printf("<p> Permisos: Lectura y escritura");
 
             //  CAMBIADO DE PERMISO
             
-            extraer(archivoSmb, mensaje, replace_str(usuario, "+", " "), shellLimpio, "No");
-        }else if (strcmp(aux,"lectura") == 0)
+            extraer(archivoSmb, mensaje, usuario, ruta, "No");
+        }else if (strcmp(clave,"lectura") == 0)
         {
             printf("<p> Permisos: Lectura");
             //  CAMBIADO DE PERMISO
-            extraer(archivoSmb, mensaje, replace_str(usuario, "+", " "), shellLimpio, "Yes");
+            extraer(archivoSmb, mensaje, usuario, ruta, "Yes");
         }
+    
     }
     
 

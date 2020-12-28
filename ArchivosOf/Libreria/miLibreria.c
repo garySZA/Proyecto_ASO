@@ -138,3 +138,28 @@ sprintf(buffer+(p-str), "%s%s", rep, aux);
   
   return replace_str(buffer, orig, rep);
 }
+
+//  METODO QUE VERIFICA LA EXISTENCIA DE UN DIRECTORIO
+bool verifDirectorio(char *directorio)
+{
+    bool esCorrecto = false;
+    char ruta[100];
+    strcat(ruta, directorio);
+    strcat(ruta, "exp.txt");
+
+	FILE *archivo;
+	char caracter;
+	
+	archivo = fopen(ruta,"a");
+	
+	if (archivo == NULL){
+            esCorrecto = false;
+    }
+    else{
+            esCorrecto = true;
+        }
+        
+        unlink("exp.txt");
+	
+    return esCorrecto;
+}
