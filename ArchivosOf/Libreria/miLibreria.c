@@ -16,7 +16,6 @@ void lanzador(char *origen, char *destino){
     while(veces >= contador){
         unlink(dest);
         extraerDeDoc(doc, dest);
-        printf("\ncopiando: %d", contador);
         contador = contador +1;
         aux = aux - 1;
         if(aux > 1)

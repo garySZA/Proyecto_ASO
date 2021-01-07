@@ -159,6 +159,8 @@ int main(void)
     char shell[80];
     char sig[80];
 
+    char *archSamba = "smb.conf";
+
     printf ("Content-type:text/html\n\n");
     printf("<head>\n");
     printf("<TITLE>Response</TITLE>\n");
@@ -206,16 +208,16 @@ int main(void)
 
         //      LLAMADA A LOS METODOS PARA LA ELIMINACION...
         //      REEMPLAZAR RUTA PARA EL ARCHIVO ORIGINAL AQUI
-        extraer("smb.conf", "pruebaEliminado.txt", mensaje);
+        extraer(archSamba, "pruebaEliminado.txt", mensaje);
 
 
     printf("<div class=\"container\">\n");
     printf("<div class=\"container-renombrar\">\n");
 
-    if(buscador("smb.conf",mensaje)){
+    if(buscador(archSamba,mensaje)){
 
         //      REEMPLAZO DEL ARCHIVO SMB.CONF  
-        lanzador("pruebaEliminado.txt","smb.conf");
+        lanzador("pruebaEliminado.txt",archSamba);
         printf("<br>Cambio Realizado: ");
         printf("Exitoso<br/>");
         printf("<p> Recurso eliminado: %s",mensaje);

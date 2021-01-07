@@ -10,3 +10,5 @@ al cambiar nombre de recurso de "Archivo" a "archivo" se presenta un error
 -revisar los metodos para las HUS 1y2
 
 -aplicar metodo lanzador a HU5y6 para que reemplace el archivo "probando2.txt"(hu6) por el smb.conf original
+
+-cambiar rutas de archivo original de hu7 directamente en la variable "archSamba"
