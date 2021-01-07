@@ -220,9 +220,41 @@ int main(void)
     printf("<div class=\"container-renombrar\">\n");
 
     //  ANIADIR EN ESTA LINEA UN IF QUE VERIFIQUE LA RUTA INGRESADA...
+            if(strstr(ruta2,"")){
+                if(strcmp(usuario,"ambos") == 0){
+                    printf("<br>Cambio Realizado: Exitoso");
+                    printf("<p>Recurso modificado: %s", quitar(mensaje, "%0D%0A", ""));
+                    printf("<p> Permisos: Lectura y escritura");
+
+                    //  CAMBIADO DE PERMISO
+                    extraer2(archivoSmb, "probando.txt", reco, "No");
+
+
+                    //Reemplazando el archivo original por el auxiliar que contiene los cambios
+                    lanzador("probando.txt", archivoSmb);
+
+                    //Eliminando los archivos auxiliares
+                    unlink("probando.txt");
+
+                }else if (strcmp(usuario,"lectura") == 0)
+                {
+                    printf("<br>Cambio Realizado: Exitoso");
+                    printf("<p>Recurso modificado: %s", quitar(mensaje, "%0D%0A", ""));
+                    printf("<p> Permisos: Lectura");
+                    //  CAMBIADO DE PERMISO
+                    extraer2(archivoSmb, "probando.txt", reco, "Yes");
+
+
+                    //Reemplazando el archivo original por el auxiliar que contiene los cambios
+                    lanzador("probando.txt", archivoSmb);
+
+                    //Eliminando los archivos auxiliares
+                    unlink("probando.txt");
+
+                }
+            }else 
             if(verifPath(ruta2) == 1){
                 if(strcmp(usuario,"ambos") == 0){
-                    printf("<p> Permisos: Lectura y escritura");
 
                     //  CAMBIADO DE PERMISO
                     extraer2(archivoSmb, "probando.txt", reco, "No");
@@ -233,6 +265,7 @@ int main(void)
                     printf("<br>Cambio Realizado: Exitoso");
                     printf("<p>Recurso modificado: %s", quitar(mensaje, "%0D%0A", ""));
                     printf("<p>Nueva ruta: %s",quitar(clave,"%2F","/"));
+                    printf("<p> Permisos: Lectura y escritura");
 
                     //Reemplazando el archivo original por el auxiliar que contiene los cambios
                     lanzador("probando2.txt", archivoSmb);
@@ -243,7 +276,6 @@ int main(void)
 
                 }else if (strcmp(usuario,"lectura") == 0)
                 {
-                    printf("<p> Permisos: Lectura");
                     //  CAMBIADO DE PERMISO
                     extraer2(archivoSmb, "probando.txt", reco, "Yes");
 
@@ -253,6 +285,7 @@ int main(void)
                     printf("<br>Cambio Realizado: Exitoso");
                     printf("<p>Recurso modificado: %s", quitar(mensaje, "%0D%0A", ""));
                     printf("<p>Nueva ruta: %s",quitar(clave,"%2F","/"));
+                    printf("<p> Permisos: Lectura");
 
                     //Reemplazando el archivo original por el auxiliar que contiene los cambios
                     lanzador("probando2.txt", archivoSmb);
