@@ -13,10 +13,16 @@ char *removerCaracteres(char *cadena, char *caracteres);
 void leerRecursosParaMostrar();
 //
 
+//Metodo para generar nombre de grupo de recurso
+char *buscarNombreGrupo(char *doc);
+
 //      METODOS PARA HU6
 void leerRecursosParaMostrarHTML(char *documento);
 
 int main(){
+
+    char *archSamba = "smb.conf";
+
     /*
             BLOQUE ENCARGADO DE MOSTRAR LISTA DE RECURSOS
     */
@@ -121,8 +127,10 @@ int main(){
     printf("<h3> Grupo de trabajo: </h3>\n");
     printf("</div>\n");
     printf("<div class=\"campo opcion2\">\n");
-    // llamar a metodo que devuelva valor de workgroup en la sig fila reemplazando la que esta
-    printf("<h3> LABINFSIS </h3>\n");
+    // llamar a metodo que devuelva valor de workgroup en la sig fila reemplazando la que esta(hecho ln130)
+    printf("<h3>\n");
+    printf(buscarNombreGrupo("smb.conf"));
+    printf("</h3>\n");
     printf("</div>\n");
     printf("<div class=\"campo\">\n");
     printf("<h3> Nuevo grupo de trabajo: </h3>\n");
@@ -453,4 +461,30 @@ void leerRecursosParaMostrarHTML(char *documento){
         //printf("<option value=\"opcion1\">\n");
     }
         fclose(f);
+}
+
+//Metodo para generar nombre del grupo
+char *buscarNombreGrupo(char *doc){
+        char temp[1024];
+
+        char *grupo;
+        char *limpio;
+
+        FILE *f;
+        f = fopen(doc, "r");
+        if (f == NULL)
+        {
+            printf("No se ha podido encontrar el archivo... \n");
+            exit(1);
+        }
+        while(fgets(temp, 1024, (FILE*) f)) {
+            char *aux = temp;
+            
+            if(strstr(temp, "workgroup")){
+                grupo = temp;
+                limpio = replace_str(grupo, "workgroup =", "");
+            }
+        }
+        fclose(f);    
+        return limpio;
 }
