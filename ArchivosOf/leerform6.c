@@ -234,6 +234,13 @@ int main(void)
                     printf("<p>Recurso modificado: %s", quitar(mensaje, "%0D%0A", ""));
                     printf("<p>Nueva ruta: %s",quitar(clave,"%2F","/"));
 
+                    //Reemplazando el archivo original por el auxiliar que contiene los cambios
+                    lanzador("probando2.txt", archivoSmb);
+
+                    //Eliminando los archivos auxiliares
+                    unlink("probando.txt");
+                    unlink("probando2.txt");
+
                 }else if (strcmp(usuario,"lectura") == 0)
                 {
                     printf("<p> Permisos: Lectura");
@@ -246,6 +253,14 @@ int main(void)
                     printf("<br>Cambio Realizado: Exitoso");
                     printf("<p>Recurso modificado: %s", quitar(mensaje, "%0D%0A", ""));
                     printf("<p>Nueva ruta: %s",quitar(clave,"%2F","/"));
+
+                    //Reemplazando el archivo original por el auxiliar que contiene los cambios
+                    lanzador("probando2.txt", archivoSmb);
+
+                    //Eliminando los archivos auxiliares
+                    unlink("probando.txt");
+                    unlink("probando2.txt");
+
                 }
             }else{
                 printf("Fallido, Ingrese una ruta valida...");
