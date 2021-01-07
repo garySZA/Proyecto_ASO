@@ -18,4 +18,4 @@ void escrituraDestinoHU6(char *cad, char *dest);
 char *replace_str(char *str, char *orig, char *rep);
 
 //metodo que verifica un directorio
-bool verifPath(char *directorio);
+int verifPath(char *directorio);

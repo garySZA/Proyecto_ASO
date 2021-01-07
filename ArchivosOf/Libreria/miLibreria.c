@@ -140,9 +140,9 @@ sprintf(buffer+(p-str), "%s%s", rep, aux);
 }
 
 //  METODO QUE VERIFICA LA EXISTENCIA DE UN DIRECTORIO
-bool verifPath(char *directorio)
+int verifPath(char *directorio)
 {
-    bool esCorrecto = false;
+   int esCorrecto;
     char ruta[100];
     strcpy(ruta, directorio);
     strcat(ruta, "exp.txt");
@@ -153,10 +153,11 @@ bool verifPath(char *directorio)
 	archivo = fopen(ruta,"a");
 	
 	if (archivo == NULL){
-            esCorrecto = false;
+
+            esCorrecto = 0;
     }
     else{
-            esCorrecto = true;
+            esCorrecto = 1;
         }
         
         unlink(ruta);

@@ -2,24 +2,23 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+
 #include "./Libreria/milibreria.h"
 #include "./Libreria/miLibreria.c"
 
 #define MAXLEN 1024
 
 //  LISTA DE METODOS PARA HU6
-void extraer(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por);
+void extraer1(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por);
 void escrituraDestino(char *cad, char *dest);
 
 //  PARA REEMPLAZAR LOS PERMISOS DEL RECURSO
 void extraer2(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por);
 
-char *replace_str(char *str, char *orig, char *rep);
-
 
 //  BLOQUE METODOS PARA HU6
 
-void extraer(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por)
+void extraer1(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por)
 {
     unlink(dest);
 
@@ -144,26 +143,6 @@ char *quitar(char *archivo, char *aBorrar, char *reemplazo){
     return res;
 }
 
-//  Reemplazar
-char *replace_str(char *str, char *orig, char *rep)
-{
-  static char buffer[4096];
-  char *p;
-
-  if(!(p = strstr(str, orig)))  // Is 'orig' even in 'str'?
-    return str;
-
-  strncpy(buffer, str, p-str); // Copy characters from 'str' start to 'orig' st$
-  //buffer[p-str] = '\0'; NO HACE FALTA
-  
-char aux[strlen(p+strlen(orig))+1]; 
-strcpy(aux, p+strlen(orig)); //Lo guardamos para que sprintf no lo machaque si rep es más largo que orig
-
-sprintf(buffer+(p-str), "%s%s", rep, aux);
-  
-  return replace_str(buffer, orig, rep);
-}
-
 int main(void)
 {
     char *lenstr;
@@ -231,52 +210,47 @@ int main(void)
     strcat(reco, mensajeLimpio);
     strcat(reco,"]");
 
-    char *ruta = quitar(clave,"%2F","/");
+    //char *ruta = quitar(clave,"%2F","/");
+
+    char *ruta2 = replace_str(clave, "%2F", "/");
 
     //  INVOCANDO METODOS
-
-    //  CAMBIAR RUTA
-    extraer(archivoSmb, "dale.txt",reco, ruta);
 
     printf("<div class=\"container\">\n");
     printf("<div class=\"container-renombrar\">\n");
 
-    printf("<br>Cambio Realizado: Exitoso");
-    printf("<p>Recurso modificado: %s", quitar(mensaje, "%0D%0A", ""));
-    printf("<p>Nueva ruta: %s",quitar(clave,"%2F","/"));
-
-
-        if(strcmp(clave,NULL) == 0){
-            if(strcmp(usuario,"ambos") == 0){
-            printf("<p> Permisos: Lectura y escritura");
-
-            //  CAMBIADO DE PERMISO
-            extraer2(archivoSmb, "probando.txt", reco, "No");
-            }else if (strcmp(usuario,"lectura") == 0)
-            {
-                printf("<p> Permisos: Lectura");
-                //  CAMBIADO DE PERMISO
-                extraer2(archivoSmb, "dale.txt", reco, "Yes");
-            }
-        }else{
-            if(verifPath(clave)==1){
+    //  ANIADIR EN ESTA LINEA UN IF QUE VERIFIQUE LA RUTA INGRESADA...
+            if(verifPath(ruta2) == 1){
                 if(strcmp(usuario,"ambos") == 0){
-                printf("<p> Permisos: Lectura y escritura");
+                    printf("<p> Permisos: Lectura y escritura");
 
-                //  CAMBIADO DE PERMISO
-                extraer2(archivoSmb, "probando.txt", reco, "No");
+                    //  CAMBIADO DE PERMISO
+                    extraer2(archivoSmb, "probando.txt", reco, "No");
+
+                    //  CAMBIAR RUTA
+                    extraer1("probando.txt", "probando2.txt",reco, ruta2);
+
+                    printf("<br>Cambio Realizado: Exitoso");
+                    printf("<p>Recurso modificado: %s", quitar(mensaje, "%0D%0A", ""));
+                    printf("<p>Nueva ruta: %s",quitar(clave,"%2F","/"));
+
                 }else if (strcmp(usuario,"lectura") == 0)
                 {
                     printf("<p> Permisos: Lectura");
                     //  CAMBIADO DE PERMISO
-                    extraer2(archivoSmb, "dale.txt", reco, "Yes");
+                    extraer2(archivoSmb, "probando.txt", reco, "Yes");
+
+                    //  CAMBIAR RUTA
+                    extraer1("probando.txt", "probando2.txt",reco, ruta2);
+
+                    printf("<br>Cambio Realizado: Exitoso");
+                    printf("<p>Recurso modificado: %s", quitar(mensaje, "%0D%0A", ""));
+                    printf("<p>Nueva ruta: %s",quitar(clave,"%2F","/"));
                 }
-            }else
-            {
-                printf("Fallido, ruta incorrecta... Intente ingresando una ruta valida");
+            }else{
+                printf("Fallido, Ingrese una ruta valida...");
             }
-            
-        }
+        
         
     
 
