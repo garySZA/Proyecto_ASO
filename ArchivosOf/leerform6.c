@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include "./Libreria/milibreria.h"
+#include "./Libreria/miLibreria.c"
 
 #define MAXLEN 1024
 
@@ -243,17 +245,37 @@ int main(void)
     printf("<p>Recurso modificado: %s", quitar(mensaje, "%0D%0A", ""));
     printf("<p>Nueva ruta: %s",quitar(clave,"%2F","/"));
 
-    //  ANIADIR EN ESTA LINEA UN IF QUE VERIFIQUE LA RUTA INGRESADA...
-        if(strcmp(usuario,"ambos") == 0){
+
+        if(strcmp(clave,NULL) == 0){
+            if(strcmp(usuario,"ambos") == 0){
             printf("<p> Permisos: Lectura y escritura");
 
             //  CAMBIADO DE PERMISO
             extraer2(archivoSmb, "probando.txt", reco, "No");
-        }else if (strcmp(usuario,"lectura") == 0)
-        {
-            printf("<p> Permisos: Lectura");
-            //  CAMBIADO DE PERMISO
-            extraer2(archivoSmb, "dale.txt", reco, "Yes");
+            }else if (strcmp(usuario,"lectura") == 0)
+            {
+                printf("<p> Permisos: Lectura");
+                //  CAMBIADO DE PERMISO
+                extraer2(archivoSmb, "dale.txt", reco, "Yes");
+            }
+        }else{
+            if(verifPath(clave)==1){
+                if(strcmp(usuario,"ambos") == 0){
+                printf("<p> Permisos: Lectura y escritura");
+
+                //  CAMBIADO DE PERMISO
+                extraer2(archivoSmb, "probando.txt", reco, "No");
+                }else if (strcmp(usuario,"lectura") == 0)
+                {
+                    printf("<p> Permisos: Lectura");
+                    //  CAMBIADO DE PERMISO
+                    extraer2(archivoSmb, "dale.txt", reco, "Yes");
+                }
+            }else
+            {
+                printf("Fallido, ruta incorrecta... Intente ingresando una ruta valida");
+            }
+            
         }
         
     

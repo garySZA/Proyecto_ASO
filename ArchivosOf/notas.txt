@@ -7,3 +7,4 @@ al cambiar nombre de recurso de "Archivo" a "archivo" se presenta un error
     -Evitar poner nuevos nombres que contengan > %D0A algunos de esos elementos
 
 -crear metodo que valide una ruta que se ingrese por el programa
+-revisar los metodos para las HUS 1y2

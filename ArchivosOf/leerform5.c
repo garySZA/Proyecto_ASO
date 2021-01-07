@@ -5,12 +5,14 @@
 #include <stdbool.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 #define MAXLEN 1024
 
 //  METODOS PARA LA HU5
 void extraer(char *doc, char *nombre, char *comentario, char *ruta, char *permiso);
 
-bool verifDirectorios(char *directorio);
+int verifDirectorios(char *directorio);
 
 //  BLOQUE DE METODOS PARA LA HU5
 
@@ -55,11 +57,11 @@ void extraer(char *doc, char *nombre, char *comentario, char *ruta, char *permis
 
 //  FIN BLOQUE METODOS 
 
-bool verifDirectorios(char *directorio)
+int verifDirectorios(char *directorio)
 {
-    bool esCorrecto = false;
+    int esCorrecto;
     char ruta[100];
-    strcat(ruta, directorio);
+    strcpy(ruta, directorio);
     strcat(ruta, "exp.txt");
 
 	FILE *archivo;
@@ -69,13 +71,13 @@ bool verifDirectorios(char *directorio)
 	
 	if (archivo == NULL){
 
-            esCorrecto = false;
+            esCorrecto = 0;
     }
     else{
-            esCorrecto = true;
+            esCorrecto = 1;
         }
         
-        unlink("exp.txt");
+        unlink(ruta);
 	
     return esCorrecto;
 }
@@ -177,8 +179,7 @@ int main(void)
 
     printf("<br>Cambio realizado:");
 
-    bool direc = verifDirectorios("/home/garys/Desktop/");
-    
+
     //  INVOCANDO AL METOODO>
     //  primer if verifica si existe algun recurso con el nombre ingresado
     //  implementar if para controlar ruta
@@ -188,26 +189,33 @@ int main(void)
         printf(" Fallido, ya existe un recurso con el nombre ingresado");
     }else
     {
-        printf(" Exitoso\n");
-        
         char *ruta = replace_str(shell, "%2F", "/");
-        printf("<p> Ruta: %s", ruta);
-        printf("<br/>");
-        printf("<p> Nombre del recurso: %s",mensaje);
-        printf("<p> Comentario: %s", usuario);
-
-        if(strcmp(clave,"ambos") == 0){
-            printf("<p> Permisos: Lectura y escritura");
-
-            //  CAMBIADO DE PERMISO
+        if(verifDirectorios(ruta) == 1){
             
-            extraer(archivoSmb, mensaje, usuario, ruta, "No");
-        }else if (strcmp(clave,"lectura") == 0)
+            printf(" Exitoso\n");
+            
+            printf("<p> Ruta: %s", ruta);
+            printf("<br/>");
+            printf("<p> Nombre del recurso: %s",mensaje);
+            printf("<p> Comentario: %s", usuario);
+
+            if(strcmp(clave,"ambos") == 0){
+                printf("<p> Permisos: Lectura y escritura");
+
+                //  CAMBIADO DE PERMISO
+                
+                extraer(archivoSmb, mensaje, usuario, ruta, "No");
+            }else if (strcmp(clave,"lectura") == 0)
+            {
+                printf("<p> Permisos: Lectura");
+                //  CAMBIADO DE PERMISO
+                extraer(archivoSmb, mensaje, usuario, ruta, "Yes");
+            }
+        }else
         {
-            printf("<p> Permisos: Lectura");
-            //  CAMBIADO DE PERMISO
-            extraer(archivoSmb, mensaje, usuario, ruta, "Yes");
+            printf("Fallido, ruta inexistente... Ingrese una ruta correcta");
         }
+        
     
     }
     

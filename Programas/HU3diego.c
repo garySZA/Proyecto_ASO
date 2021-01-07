@@ -8,7 +8,7 @@ int main(){
 
 	int longitud(char arec[]);
 
-	FILE * flujo = fopen("SambaConf.txt", "r");
+	FILE * flujo = fopen("smb.conf", "r");
 	if(flujo == NULL){
 		
 		perror("Error en la apertura del archivo");
@@ -85,7 +85,7 @@ int main(){
 
 	//Escribimos en el archivo de configuración
 	
-	FILE * escrito = fopen("SambaConf.txt", "w");
+	FILE * escrito = fopen("smb.conf", "w");
         if(escrito == NULL){
 
                 perror("Error en la apertura del archivo");

@@ -3,9 +3,9 @@
 #include <stdbool.h>
 #include <string.h>
 
-bool verifDirectorio(char *directorio)
+int verifDirectorio(char *directorio)
 {
-    bool esCorrecto = false;
+    int esCorrecto;
     char ruta[100];
     strcat(ruta, directorio);
     strcat(ruta, "exp.txt");
@@ -17,10 +17,10 @@ bool verifDirectorio(char *directorio)
 	
 	if (archivo == NULL){
 
-            esCorrecto = false;
+            esCorrecto = 0;
     }
     else{
-            esCorrecto = true;
+            esCorrecto = 1;
         }
         
         unlink("exp.txt");
@@ -29,7 +29,7 @@ bool verifDirectorio(char *directorio)
 }
 
 int main(){
-    if(verifDirectorio("/home/garys/Desktop/")){
+    if(verifDirectorio("/home/garys/Desktop/") == 1){
         printf("verdadero");
     }else{
         printf("falso");
