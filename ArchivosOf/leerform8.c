@@ -140,6 +140,8 @@ int main(void)
     char shell[80];
     char sig[80];
 
+    char *archSamba = "smb.conf";
+
     printf ("Content-type:text/html\n\n");
     printf("<head>\n");
     printf("<TITLE>Response</TITLE>\n");
@@ -184,7 +186,8 @@ int main(void)
     separar(usuario, inputBuffer, '=');
     separar(usuario, inputBuffer, '&');
 
-    removerCaracteres(mensaje, "%D0A");
+    //removerCaracteres(mensaje, "%D0A");
+    char *name = replace_str(mensaje, "%0D%0A", "");
 
     //  PROCEDIENDO A CAMBIAR NOMBRE
     char res[100] = "[";
@@ -193,7 +196,7 @@ int main(void)
 
     //  CONCATENANDO [] PARA SU BUSQUEDA EN EL DOCUMENTO
     char palabraABuscar[100] = "[";
-    strcat(palabraABuscar,mensaje);
+    strcat(palabraABuscar,name);
     strcat(palabraABuscar,"]");
 
     //
@@ -201,24 +204,23 @@ int main(void)
     printf("<div class=\"container\">\n");
     printf("<div class=\"container-renombrar\">\n");
 
-    if(buscador("smb.conf", mensaje)){
+    if(buscador(archSamba, name)){
         //      PROCEDIENDO AL CAMBIO DE NOMBRE DEL RECURSO
         //      REEMPLAZAR RUTA PARA EL ARCHIVO ORIGINAL AQUI
-        extraer("smb.conf", "probando.txt", palabraABuscar, res);
+        extraer(archSamba, "probandoHU8.txt", palabraABuscar, res);
 
         //      REEMPLAZO DEL ARCHIVO SMB.CONF  
-        lanzador("probando.txt","smb.conf");
-        printf(mensaje);
+        lanzador("probandoHU8.txt",archSamba);
 
         printf("<br>Cambio Realizado: Exitoso");
-        printf("<p> Nombre anterior: %s",mensaje);
+        printf("<p> Nombre anterior: %s",name);
         printf("<p> Nuevo nombre: %s",usuario);
 
         //      ELIMINACION DE ARCHIVO AUXILIAR     
-        unlink("probando.txt");
+        unlink("probandoHU8.txt");
     }else{
         printf("<br>Cambio Realizado: Fallido");
-        printf("<p> Nombre del recurso: %s",mensaje);
+        printf("<p> Nombre del recurso: %s",name);
         printf("<p> nombre de recurso no existe...");
     }
     printf("<br/>");
