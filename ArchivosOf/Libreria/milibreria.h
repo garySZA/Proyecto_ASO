@@ -2,6 +2,8 @@
 
 void extraerDeDoc(char *doc, char *dest);
 void escrituraDestinoDeDoc(char *cad, char *dest);
+
+//Metodo que realiza la copia de un archivo a otro directorio
 void lanzador(char *origen, char *destino);
 
 //  Buscador de palabras

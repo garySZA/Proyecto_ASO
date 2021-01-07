@@ -4,6 +4,9 @@
 #include "./Libreria/miLibreria.c"
 #define MAXLEN 1024
 
+void buscaYReemplaza(char *doc, char *dest, char *name);
+void escritor(char *cad, char *dest);
+
 //  BLOQUE METODOS PARA HU3
 
 int longitud(char rec[]){
@@ -16,6 +19,55 @@ int longitud(char rec[]){
 	}
 
 	return res;
+}
+
+//	METODOS OF
+/*
+//Metodo que se encarga de realizar una busqueda fila por fila la cadena "workgroup",
+si la fila que agarra no contiene la cadena entonces lo pasa al siguiente metodo que se encarga
+de escribir lo que el primer metodo le pase en un archivo auxiliar llamado "work.txt"
+*/
+/*
+Una vez que encuentra la fila que contenga la cadena, la reemplaza por otra cadena
+concatenada con el nuevo nombre que ingresa como parametro al primer metodo.
+*/
+void buscaYReemplaza(char *doc, char *dest, char *name){
+        unlink(dest);
+        char temp[1024];
+
+        //concatenando el nuevo nombre del grupo de trabajo
+        char nuevo[100] = "\tworkgroup = ";
+        strcat(nuevo, name);
+        strcat(nuevo,"\n");
+
+        FILE *f;
+        f = fopen(doc, "r");
+        if (f == NULL)
+        {
+            printf("No se ha podido encontrar el archivo... \n");
+            exit(1);
+        }
+        while(fgets(temp, 1024, (FILE*) f)) {
+            char *aux = temp;
+            
+            if(strstr(temp, "workgroup")){
+                escritor(nuevo, dest);
+            }else{
+                escritor(aux, dest);
+            }
+        }
+        fclose(f);    
+}
+
+void escritor(char *cad, char *dest){
+    
+    FILE *f = fopen(dest, "a");
+
+	if(f == NULL){
+		perror("Error");
+	}
+    fputs(cad,f);          
+    fclose(f);
 }
 
 //  FIN BLOQUE METODOS PARA HU3
@@ -59,6 +111,7 @@ int main(void)
     char clave[80];
     char shell[80];
 
+	char *archSamba = "smb.conf";
 
     printf ("Content-type:text/html\n\n");
     printf("<head>\n");
@@ -104,9 +157,18 @@ int main(void)
     printf("<div class=\"container\">\n");
     printf("<div class=\"container-renombrar\">\n");
     
-    printf("<br>Cambio realizado:");
+    printf("<br>Cambio realizado: Exitoso");
     printf("<p> Nuevo grupo de trabajo: %s",mensaje);
     printf("<br/>");
+
+	//Llamada al metodo para realizar el cambio
+	buscaYReemplaza(archSamba, "work.txt", mensaje);
+
+	//Llamando al metodo para reemplazar el archivo smb por el auxiliar que contiene los cambios
+	lanzador("work.txt", archSamba);
+
+	//Eliminando el archivo auxiliar
+	unlink("work.txt");
 
     printf("<div class=\"position-fixed\">\n");
     printf("<button class=\"boton\" onclick=\"location.href='./index'\">Volver</button>\n");
@@ -115,99 +177,6 @@ int main(void)
     printf("</div>\n");
     printf("</div>\n");
     
-    //  BLOQUE MAIN METODO PARA HU3
-
-    FILE * flujo = fopen("smb.conf", "r");
-	if(flujo == NULL){
-		
-		perror("Error en la apertura del archivo");
-		return 1;
-		
-	}
-	
-	char ng[20]= "DIEGO";
-	char grup[20];
-	char car;
-	char cad1[2048];
-	int pos1= 0;
-	int tam1= 0;
-	int enc= 0;
-	int bcar1= 1;
-	int enc2= 0;
-	int bfin= 0;
-	int bcat= 0;
-	char nueGrup[20]= " ";
-
-	strcat(nueGrup,ng);
-
-	while (feof(flujo)==0){	
-		car= fgetc(flujo);
-
-		//cadena1
-		if(bcar1==1){
-		cad1[pos1]= car;
-
-		if(car=='='){
-			enc= 1;
-			bcat= 1;
-		}
-
-		if(bcat==1){
-			strcat(cad1,nueGrup);
-			bcat=0;
-			bcar1= 0;
-			bfin= 1;
-			}
-
-		pos1= pos1+1;
-		tam1= tam1+1;
-		//fin cadena1
-
-		}else{
-		//cadena1
-		    
-			if(car=='p' && bfin==1){
-				enc2= 1;
-				char salto[3]= "\n	";
-				strcat(cad1,salto);
-				pos1= pos1+2+longitud(nueGrup);
-				bfin= 0;
-
-			}
-
-			if(enc2==1){
-				cad1[pos1]= car;
-				tam1= tam1+1;
-				pos1= pos1+1;
-			}
-		}
-
-
-	}
-	
-	fclose(flujo);
-
-	cad1[tam1+7]= '\0';
-
-	printf("\n%s\n",cad1);
-
-
-	//Escribimos en el archivo de configuración
-	
-	FILE * escrito = fopen("smb.conf", "w");
-        if(escrito == NULL){
-
-                perror("Error en la apertura del archivo");
-                return 1;
-
-        }
-
-	fputs(cad1,escrito);
-
-	fflush(escrito);
-	fclose(escrito);
-
-    //  FIN BLOQUE MAIN METODO PARA HU3
     
     return 0;
 }
