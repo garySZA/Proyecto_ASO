@@ -219,22 +219,30 @@ int main(void)
     printf("<div class=\"container\">\n");
     printf("<div class=\"container-renombrar\">\n");
 
-    //  ANIADIR EN ESTA LINEA UN IF QUE VERIFIQUE LA RUTA INGRESADA...
+    if(strstr(mensaje, "selected")){
+        printf("Debe seleccionar algun recurso. porfavor intente otra vez");
+    }else{
+        //  ANIADIR EN ESTA LINEA UN IF QUE VERIFIQUE LA RUTA INGRESADA...
             if(strstr(ruta2,"")){
                 if(strcmp(usuario,"ambos") == 0){
-                    printf("<br>Cambio Realizado: Exitoso");
-                    printf("<p>Recurso modificado: %s", quitar(mensaje, "%0D%0A", ""));
-                    printf("<p> Permisos: Lectura y escritura");
 
                     //  CAMBIADO DE PERMISO
-                    extraer2(archivoSmb, "probando.txt", reco, "No");
+                    if(strstr(reco,"[printers]")){
+                        printf("El recurso seleccionado no cuenta con permisos para ser modificados, intente con otro recurso.");
+                    }else{
+                        printf("<br>Cambio Realizado: Exitoso");
+                        printf("<p>Recurso modificado: %s", quitar(mensaje, "%0D%0A", ""));
+                        printf("<p> Permisos: Lectura y escritura");
+                        extraer2(archivoSmb, "probando.txt", reco, "No");
+                    
+                        //Reemplazando el archivo original por el auxiliar que contiene los cambios
+                        lanzador("probando.txt", archivoSmb);
+
+                        //Eliminando los archivos auxiliares
+                        unlink("probando.txt");
+                    }
 
 
-                    //Reemplazando el archivo original por el auxiliar que contiene los cambios
-                    lanzador("probando.txt", archivoSmb);
-
-                    //Eliminando los archivos auxiliares
-                    unlink("probando.txt");
 
                 }else if (strcmp(usuario,"lectura") == 0)
                 {
@@ -251,6 +259,8 @@ int main(void)
                     //Eliminando los archivos auxiliares
                     unlink("probando.txt");
 
+                }else{
+                    printf("Ninguna accion seleccionada, cero cambios realizados.");
                 }
             }else 
             if(verifPath(ruta2) == 1){
@@ -294,10 +304,13 @@ int main(void)
                     unlink("probando.txt");
                     unlink("probando2.txt");
 
+                }else{
+                    printf("Ninguna accion seleccionada, cero cambios realizados.");
                 }
             }else{
                 printf("Fallido, Ingrese una ruta valida...");
             }
+    }
         
         
     
