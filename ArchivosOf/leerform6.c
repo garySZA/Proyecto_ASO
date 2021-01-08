@@ -223,7 +223,7 @@ int main(void)
         printf("Debe seleccionar algun recurso. porfavor intente otra vez");
     }else{
         //  ANIADIR EN ESTA LINEA UN IF QUE VERIFIQUE LA RUTA INGRESADA...
-            if(strstr(ruta2,"")){
+            if(strcmp(ruta2,"") == 0){
                 if(strcmp(usuario,"ambos") == 0){
 
                     //  CAMBIADO DE PERMISO
@@ -246,25 +246,47 @@ int main(void)
 
                 }else if (strcmp(usuario,"lectura") == 0)
                 {
-                    printf("<br>Cambio Realizado: Exitoso");
-                    printf("<p>Recurso modificado: %s", quitar(mensaje, "%0D%0A", ""));
-                    printf("<p> Permisos: Lectura");
-                    //  CAMBIADO DE PERMISO
-                    extraer2(archivoSmb, "probando.txt", reco, "Yes");
+                    if(strstr(reco,"[printers]")){
+                        printf("El recurso seleccionado no cuenta con permisos para ser modificados, intente con otro recurso.");
+                    }else{
+                        printf("<br>Cambio Realizado: Exitoso");
+                        printf("<p>Recurso modificado: %s", quitar(mensaje, "%0D%0A", ""));
+                        printf("<p> Permisos: Lectura");
+                        //  CAMBIADO DE PERMISO
+                        extraer2(archivoSmb, "probando.txt", reco, "Yes");
 
 
-                    //Reemplazando el archivo original por el auxiliar que contiene los cambios
-                    lanzador("probando.txt", archivoSmb);
+                        //Reemplazando el archivo original por el auxiliar que contiene los cambios
+                        lanzador("probando.txt", archivoSmb);
 
-                    //Eliminando los archivos auxiliares
-                    unlink("probando.txt");
+                        //Eliminando los archivos auxiliares
+                        unlink("probando.txt");
+                        }
 
                 }else{
                     printf("Ninguna accion seleccionada, cero cambios realizados.");
                 }
             }else 
             if(verifPath(ruta2) == 1){
-                if(strcmp(usuario,"ambos") == 0){
+                //if para cuando el combobox de permisos no este seleccionado pero si hay una ruta ingresada
+                if(strstr(usuario, "selected")){
+                    printf("funciona");
+
+                    //  CAMBIAR RUTA
+                    extraer1(archivoSmb, "probando2.txt",reco, ruta2);
+
+                    printf("<br>Cambio Realizado: Exitoso");
+                    printf("<p>Recurso modificado: %s", quitar(mensaje, "%0D%0A", ""));
+                    printf("<p>Nueva ruta: %s",quitar(clave,"%2F","/"));
+
+                    //Reemplazando el archivo original por el auxiliar que contiene los cambios
+                    lanzador("probando2.txt", archivoSmb);
+
+                    //Eliminando los archivos auxiliares
+                    unlink("probando2.txt");
+
+                }else{
+                    if(strcmp(usuario,"ambos") == 0){
 
                     //  CAMBIADO DE PERMISO
                     extraer2(archivoSmb, "probando.txt", reco, "No");
@@ -305,7 +327,19 @@ int main(void)
                     unlink("probando2.txt");
 
                 }else{
-                    printf("Ninguna accion seleccionada, cero cambios realizados.");
+                    //  CAMBIAR RUTA
+                    extraer1(archivoSmb, "probando2.txt",reco, ruta2);
+
+                    printf("<br>Cambio Realizado: Exitoso");
+                    printf("<p>Recurso modificado: %s", quitar(mensaje, "%0D%0A", ""));
+                    printf("<p>Nueva ruta: %s",quitar(clave,"%2F","/"));
+
+                    //Reemplazando el archivo original por el auxiliar que contiene los cambios
+                    lanzador("probando2.txt", archivoSmb);
+
+                    //Eliminando los archivos auxiliares
+                    unlink("probando2.txt");
+                }
                 }
             }else{
                 printf("Fallido, Ingrese una ruta valida...");

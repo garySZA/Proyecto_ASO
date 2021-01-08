@@ -29,7 +29,7 @@ int verifDirectorio(char *directorio)
 }
 
 int main(){
-    if(verifDirectorio("/home/garys/Desktop/") == 1){
+    if(verifDirectorio("/etc/asd") == 1){
         printf("verdadero");
     }else{
         printf("falso");
