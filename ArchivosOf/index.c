@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <errno.h>
+#include <sys/types.h>
 #include "./Libreria/milibreria.h"
 #include "./Libreria/miLibreria.c"
 
@@ -19,7 +21,18 @@ char *buscarNombreGrupo(char *doc);
 //      METODOS PARA HU6
 void leerRecursosParaMostrarHTML(char *documento);
 
+
+//      METODOS PARA VER SI ESTA INSTALADO EL SERVIDOR
+void lector();
+char *verifInstalado();
+
+//      METODO PARA VER EL STATUS DEL SERVIDOR
+char *statusSamba();
+
 int main(){
+
+    setuid(0);
+    setgid(0);
 
     char *archSamba = "smb.conf";
 
@@ -99,14 +112,18 @@ int main(){
     printf("</div>\n");
     printf("<div class=\"campo opcion2\">\n");
     //  llamar a metodo que verifica si esta instalado o no, en la sig linea, reemplanzado
-    printf("<h3> Instalado/No instalado </h3>\n");
+    printf("<h3>\n");
+    printf(verifInstalado());
+    printf("</h3>\n");
     printf("</div>\n");
     printf("<div class=\"campo\">\n");
     printf("<h3> Status: </h3>\n");
     printf("</div>\n");
     printf("<div class=\"campo opcion2\">\n");
     //  llamar a metodo que retorna si el servidor esta activo o no en la sig linea reemplazando
-    printf("<h3> Activo/Inactivo </h3>\n");
+    printf("<h3>\n");
+    printf(statusSamba());
+    printf("</h3>\n");
     printf("</div>\n");
     printf("</div>\n");
     printf("</div>\n");
@@ -461,6 +478,65 @@ void leerRecursosParaMostrarHTML(char *documento){
         //printf("<option value=\"opcion1\">\n");
     }
         fclose(f);
+}
+
+//Metodos para ver si esta instalado el servidor
+char *verifInstalado(){
+        lector();
+        char temp[100];
+        FILE *f;
+        f = fopen("estadoSamba.txt", "r");
+        if(f == NULL){
+                printf("No se ha podido abrir el fichero...2\n");
+                exit(1);
+        }
+
+        while(!feof(f)){
+                char *instalado = "samba";
+                fgets(temp, 50, f);
+                if(strstr(temp, instalado) > 0){
+                       // printf("Instalado");
+			return "Instalado";
+                }else{
+                        //printf("No instalado");
+			return "No instalado";
+                }
+        }
+	fclose(f);
+	//return 0;
+}
+
+void lector(){
+        system("rpm -qa | grep samba > estadoSamba.txt");
+        system("systemctl is-active smb.service > Resultado.txt");
+}
+
+//Metodo para ver si el status
+char *statusSamba(){
+	char temp[100];
+        lector();
+        char *grupo;
+        char *limpio;
+
+        FILE *f;
+        f = fopen("Resultado.txt", "r");
+        if (f == NULL)
+        {
+            printf("No se ha podido encontrar el archivo... \n");
+            exit(1);
+        }
+        while(fgets(temp, 1024, (FILE*) f)) {
+            char *aux = temp;
+            
+            if(strstr(temp, "inactive")){
+                grupo = "Inactivo";
+            }else{
+                grupo = "Activo";
+            }
+        }
+        fclose(f);   
+        //unlink("Resultado.txt");
+        return grupo;
 }
 
 //Metodo para generar nombre del grupo

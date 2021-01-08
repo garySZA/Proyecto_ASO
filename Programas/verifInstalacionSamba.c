@@ -8,8 +8,11 @@
 // Comando para generar estado del servidor cada cierto tiempo
 //  watch -n 300 "rpm -qa | grep samba > estadoSamba.txt"
 
-char *verifInstalado(){
+void lector();
+char *verifInstalado();
 
+char *verifInstalado(){
+        lector();
         char temp[100];
         FILE *f;
         f = fopen("estadoSamba.txt", "r");
@@ -31,6 +34,10 @@ char *verifInstalado(){
         }
 	fclose(f);
 	//return 0;
+}
+
+void lector(){
+        system("rpm -qa | grep samba > estadoSamba.txt");
 }
 
 int main(){
