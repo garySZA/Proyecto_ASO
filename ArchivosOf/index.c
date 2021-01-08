@@ -174,7 +174,7 @@ int main(){
     printf("</div>\n");
     printf("<div class=\"campo opcion\">\n");
     printf("<select name=\"recursos\" id=\"combo\">\n");
-    printf("<option value=\"\" selected=\"selected\"> -Selecciona-</option>\n");
+    printf("<option value="" selected=\"selected\"> -Selecciona-</option>\n");
     printf("<option value=\"lectura\"> Solo lectura </option> </option>\n");
     printf("<option value=\"ambos\"> Lectura y escritura </option>\n");
     printf("</select>\n");

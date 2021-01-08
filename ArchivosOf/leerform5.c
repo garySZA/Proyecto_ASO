@@ -185,38 +185,48 @@ int main(void)
     //  implementar if para controlar ruta
     
 
-    if(buscador(archivoSmb, mensaje)){
-        printf(" Fallido, ya existe un recurso con el nombre ingresado");
-    }else
-    {
-        char *ruta = replace_str(shell, "%2F", "/");
-        if(verifDirectorios(ruta) == 1){
-            
-            printf(" Exitoso\n");
-            
-            printf("<p> Ruta: %s", ruta);
-            printf("<br/>");
-            printf("<p> Nombre del recurso: %s",mensaje);
-            printf("<p> Comentario: %s", usuario);
+    if(strcmp(mensaje, "") == 0){
+        printf("Error, debe ingresar un nombre para el nuevo recurso.");
 
-            if(strcmp(clave,"ambos") == 0){
-                printf("<p> Permisos: Lectura y escritura");
+    }else if(strcmp(usuario, "") == 0){
+        printf("Error, debe ingresar un comentario para el nuevo recurso.");
 
-                //  CAMBIADO DE PERMISO
-                
-                extraer(archivoSmb, mensaje, usuario, ruta, "No");
-            }else if (strcmp(clave,"lectura") == 0)
-            {
-                printf("<p> Permisos: Lectura");
-                //  CAMBIADO DE PERMISO
-                extraer(archivoSmb, mensaje, usuario, ruta, "Yes");
-            }
+    }else if(strstr(clave, "selected")){
+        printf("Error debe elegir los permisos para el nuevo recurso");
+        
+    }else{
+        if(buscador(archivoSmb, mensaje)){
+            printf(" Fallido, ya existe un recurso con el nombre ingresado");
+            printf(mensaje);
         }else
         {
-            printf("Fallido, ruta inexistente... Ingrese una ruta correcta");
+            char *ruta = replace_str(shell, "%2F", "/");
+            if(verifDirectorios(ruta) == 1){
+                
+                printf(" Exitoso\n");
+                
+                printf("<p> Ruta: %s", ruta);
+                printf("<br/>");
+                printf("<p> Nombre del recurso: %s",mensaje);
+                printf("<p> Comentario: %s", usuario);
+
+                if(strcmp(clave,"ambos") == 0){
+                    printf("<p> Permisos: Lectura y escritura");
+
+                    //  CAMBIADO DE PERMISO
+                    
+                    extraer(archivoSmb, mensaje, usuario, ruta, "No");
+                }else if (strcmp(clave,"lectura") == 0)
+                {
+                    printf("<p> Permisos: Lectura");
+                    //  CAMBIADO DE PERMISO
+                    extraer(archivoSmb, mensaje, usuario, ruta, "Yes");
+                }
+            }else
+            {
+                printf("Fallido, ruta inexistente... Ingrese una ruta correcta");
+            }
         }
-        
-    
     }
     
 
