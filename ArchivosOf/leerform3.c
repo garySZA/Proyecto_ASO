@@ -157,18 +157,23 @@ int main(void)
     printf("<div class=\"container\">\n");
     printf("<div class=\"container-renombrar\">\n");
     
-    printf("<br>Cambio realizado: Exitoso");
-    printf("<p> Nuevo grupo de trabajo: %s",mensaje);
-    printf("<br/>");
 
-	//Llamada al metodo para realizar el cambio
-	buscaYReemplaza(archSamba, "work.txt", mensaje);
+	if(strcmp(mensaje, "") == 0){
+        printf("Error, debe ingresar un nombre para poder realizar la accion");
+    }else{
+        printf("<br>Cambio realizado: Exitoso");
+        printf("<p> Nuevo grupo de trabajo: %s",mensaje);
+        printf("<br/>");
+        
+        //Llamada al metodo para realizar el cambio
+        buscaYReemplaza(archSamba, "work.txt", mensaje);
 
-	//Llamando al metodo para reemplazar el archivo smb por el auxiliar que contiene los cambios
-	lanzador("work.txt", archSamba);
+        //Llamando al metodo para reemplazar el archivo smb por el auxiliar que contiene los cambios
+        lanzador("work.txt", archSamba);
 
-	//Eliminando el archivo auxiliar
-	unlink("work.txt");
+        //Eliminando el archivo auxiliar
+        unlink("work.txt");
+    }
 
     printf("<div class=\"position-fixed\">\n");
     printf("<button class=\"boton\" onclick=\"location.href='./index'\">Volver</button>\n");
