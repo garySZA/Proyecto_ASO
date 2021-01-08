@@ -186,6 +186,8 @@ int main(void)
     separar(usuario, inputBuffer, '=');
     separar(usuario, inputBuffer, '&');
 
+    char *inputs = usuario;
+
     //removerCaracteres(mensaje, "%D0A");
     char *name = replace_str(mensaje, "%0D%0A", "");
 
@@ -204,25 +206,34 @@ int main(void)
     printf("<div class=\"container\">\n");
     printf("<div class=\"container-renombrar\">\n");
 
-    if(buscador(archSamba, name)){
-        //      PROCEDIENDO AL CAMBIO DE NOMBRE DEL RECURSO
-        //      REEMPLAZAR RUTA PARA EL ARCHIVO ORIGINAL AQUI
-        extraer(archSamba, "probandoHU8.txt", palabraABuscar, res);
-
-        //      REEMPLAZO DEL ARCHIVO SMB.CONF  
-        lanzador("probandoHU8.txt",archSamba);
-
-        printf("<br>Cambio Realizado: Exitoso");
-        printf("<p> Nombre anterior: %s",name);
-        printf("<p> Nuevo nombre: %s",usuario);
-
-        //      ELIMINACION DE ARCHIVO AUXILIAR     
-        unlink("probandoHU8.txt");
+    if(strstr(name, "selected")){
+        printf("recurso no seleccionado");
     }else{
-        printf("<br>Cambio Realizado: Fallido");
-        printf("<p> Nombre del recurso: %s",name);
-        printf("<p> nombre de recurso no existe...");
+        if(strcmp(inputs, "") == 0){
+            printf("Debe ingresar un nuevo nombre valido, intente otra vez");
+        }else{
+            if(buscador(archSamba, name)){
+                //      PROCEDIENDO AL CAMBIO DE NOMBRE DEL RECURSO
+                //      REEMPLAZAR RUTA PARA EL ARCHIVO ORIGINAL AQUI
+                extraer(archSamba, "probandoHU8.txt", palabraABuscar, res);
+
+                //      REEMPLAZO DEL ARCHIVO SMB.CONF  
+                lanzador("probandoHU8.txt",archSamba);
+
+                printf("<br>Cambio Realizado: Exitoso");
+                printf("<p> Nombre anterior: %s",name);
+                printf("<p> Nuevo nombre: %s",usuario);
+
+                //      ELIMINACION DE ARCHIVO AUXILIAR     
+                unlink("probandoHU8.txt");
+            }else{
+                printf("<br>Cambio Realizado: Fallido");
+                printf("<p> Nombre del recurso: %s",name);
+                printf("<p> nombre de recurso no existe...");
+            }
+        }
     }
+
     printf("<br/>");
     printf("<div class=\"position-fixed\">\n");
     printf("<button class=\"boton\" onclick=\"location.href='./index'\">Volver</button>\n");

@@ -296,7 +296,7 @@ int main(){
     printf("</div>");
     printf("<div class=\"campo opcion\">");
     printf("<select name=\"recursos\" id=\"combo\">");
-    printf("<option value=\"\" selected=\"selected\"> -Selecciona-</option>");
+    printf("<option value="" selected=\"selected\"> -Selecciona-</option>");
     leerRecursosParaMostrar();
     printf("</select>");
     printf("</div>");
