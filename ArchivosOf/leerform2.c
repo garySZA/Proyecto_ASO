@@ -6,33 +6,6 @@
 #include "./Libreria/miLibreria.c"
 #define MAXLEN 1024
 
-// Separar: separa datos del formulario
-
-void separar(char *cadena, char *linea, char separador)
-{
-    int x, y;
-
-    x = 0; y = 0;
-
-    while ((linea[x]) && (linea[x] != separador))
-    {
-        cadena[x] = linea[x];
-        x = x + 1;
-    }
-    cadena[x] = '\0';
-    if (linea[x]) ++x;
-
-    y = 0;
-
-    while (linea[y] = linea[x])
-    {
-        linea[y] = linea[x];
-        y++;
-        x++;
-    }
-
-}
-
 //  METODO PARA REMOVER CUALQUIER CARACTER DE UNA CADENA
 char *removerCaracteres(char *cadena, char *caracteres){
     int indiceCadena = 0;
@@ -61,84 +34,42 @@ char *removerCaracteres(char *cadena, char *caracteres){
     return cadena;
 }
 
-//      INICIO BLOQUE DE METODOS PARA ELIMINAR UN RECURSO 
+//Metodo activador de servicio
 
-void extraer(char *doc, char *dest, char *cadena_a_Buscar)
-{
-    unlink(dest);
-
-    char temp[1024];
-    char temp2[1024];
-
-    FILE *f;
-    f = fopen(doc, "r");
-    if (f == NULL)
-    {
-        printf("No se ha podido encontrar el archivo... \n");
-        exit(1);
+void procederA(char *accion){
+    if(strcmp(accion, "activar") == 0){
+        system("service smb start");
+    }else{
+        system("service smb stop");
     }
-
-    int cant = 0;
-
-    while (fgets(temp, 1024, (FILE *)f))
-    {
-        char *aux = temp;
-
-        if (strstr(aux, cadena_a_Buscar))
-        {
-            if(strstr(temp, "groups")){
-                fgets(temp2, 1024, (FILE *)f);
-                fgets(temp2, 1024, (FILE *)f);
-                fgets(temp2, 1024, (FILE *)f);
-                fgets(temp2, 1024, (FILE *)f);    
-            }else if(strstr(temp, "users")){
-                fgets(temp2, 1024, (FILE *)f);
-                fgets(temp2, 1024, (FILE *)f);
-                fgets(temp2, 1024, (FILE *)f);
-                fgets(temp2, 1024, (FILE *)f);
-                fgets(temp2, 1024, (FILE *)f);
-            }else if(strstr(temp, "profiles")){
-                fgets(temp2, 1024, (FILE *)f);
-                fgets(temp2, 1024, (FILE *)f);
-                fgets(temp2, 1024, (FILE *)f);
-                fgets(temp2, 1024, (FILE *)f);
-                fgets(temp2, 1024, (FILE *)f);
-                fgets(temp2, 1024, (FILE *)f);
-                
-            }else{
-                fgets(temp2, 1024, (FILE *)f);
-                fgets(temp2, 1024, (FILE *)f);
-                fgets(temp2, 1024, (FILE *)f);
-                fgets(temp2, 1024, (FILE *)f);
-                fgets(temp2, 1024, (FILE *)f);
-                fgets(temp2, 1024, (FILE *)f);
-                fgets(temp2, 1024, (FILE *)f);    
-            }
-            
-            /*
-            */
-        }
-        else
-        {
-            escrituraDestino(aux, dest);
-        }
-    }
-    fclose(f);
 }
 
-void escrituraDestino(char *cad, char *dest)
+// Separar: separa datos del formulario
+
+void separar(char *cadena, char *linea, char separador)
 {
-    FILE *f = fopen(dest, "a");
+    int x, y;
 
-    if (f == NULL)
+    x = 0; y = 0;
+
+    while ((linea[x]) && (linea[x] != separador))
     {
-        perror("Error");
+        cadena[x] = linea[x];
+        x = x + 1;
     }
-    fputs(cad, f);
-    fclose(f);
-}
+    cadena[x] = '\0';
+    if (linea[x]) ++x;
 
-//      FIN BLOQUE DE METODOS PARA ELIMINAR UN RECURSO
+    y = 0;
+
+    while (linea[y] = linea[x])
+    {
+        linea[y] = linea[x];
+        y++;
+        x++;
+    }
+
+}
 
 int main(void)
 {
@@ -154,6 +85,9 @@ int main(void)
     char sig[80];
 
     char *archSamba = "smb.conf";
+
+    setuid(0);
+    setgid(0);
 
     printf ("Content-type:text/html\n\n");
     printf("<head>\n");
@@ -200,29 +134,22 @@ int main(void)
     //      REMUEVE CARACTERES ESPECIALES DEL NOMBRE DE RECURSO
     removerCaracteres(mensaje, "%AD0");
 
-        //      LLAMADA A LOS METODOS PARA LA ELIMINACION...
-        //      REEMPLAZAR RUTA PARA EL ARCHIVO ORIGINAL AQUI
-        extraer(archSamba, "pruebaEliminado.txt", mensaje);
-
+    //Llamando al metodo activador
+    procederA(mensaje);
 
     printf("<div class=\"container\">\n");
     printf("<div class=\"container-renombrar\">\n");
 
-    if(buscador(archSamba,mensaje)){
-
-        //      REEMPLAZO DEL ARCHIVO SMB.CONF  
-        lanzador("pruebaEliminado.txt",archSamba);
-        printf("<br>Cambio Realizado: ");
-        printf("Exitoso<br/>");
-        printf("<p> Recurso eliminado: %s",mensaje);
-
-        //      ELIMINACION DE ARCHIVO AUXILIAR     
-        unlink("pruebaEliminado.txt");
+    if(strstr(mensaje, "selected")){
+        printf("Error, debe elegir una opcion para poder continuar.");
     }else{
-        printf("<br>Cambio Realizado: ");
-        printf("Fallido<br/>");
-        printf("<p> Recurso compartido no encontrado");
+        if(strcmp(mensaje, "activar") == 0){
+            printf("El servidor Samba ha sido activado.");
+        }else{
+            printf("El servidor Samba ha sido desactivado.");
+        }
     }
+    
     printf("<br/>");
 
     printf("<div class=\"position-fixed\">\n");

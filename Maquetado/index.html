@@ -11,27 +11,39 @@
 <body>
     <!-- HU1 y HU2-->
 
-    <div class="container">
-        <div class="container-renombrar">
-            <div class="container-titulo titulo-servidor">
-                <h3> Servidor Samba </h3>
-            </div>
-            <div class="container-elementos-status">
-                <div class="campo">
-                    <h3> Situacion del servidor: </h3>
+    <form action="/cgi-bin/leerform1" method="POST">
+        <div class="container">
+            <div class="container-renombrar">
+                <div class="container-titulo titulo-servidor">
+                    <h3> Servidor Samba </h3>
                 </div>
-                <div class="campo opcion2">
-                    <h3> Instalado/No instalado </h3>
+                <div class="container-elementos-status">
+                    <div class="campo">
+                        <h3> Situacion del servidor: </h3>
+                    </div>
+                    <div class="campo opcion2">
+                        <h3> Instalado/No instalado </h3>
+                    </div>
+                    <div class="campo">
+                        <h3> Status: </h3>
+                    </div>
+                    <div class="campo opcion2">
+                        <h3> Activo/Inactivo </h3>
+                    </div>
                 </div>
-                <div class="campo">
-                    <h3> Status: </h3>
+                <div class="campo bton">
+                    <select name="recursos" id="combo">
+                        <option value="" selected="selected"> -Selecciona-</option>
+                        <option value="lectura"> Activar </option>
+                        <option value="ambos"> Desactivar </option>
+                    </select>
                 </div>
-                <div class="campo opcion2">
-                    <h3> Activo/Inactivo </h3>
+                <div class="campo bton">
+                    <input type="submit" name="enviar" value="Aceptar" class="boton"/>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 
     <!-- HU3-->
     

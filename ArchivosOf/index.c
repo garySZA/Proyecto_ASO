@@ -101,6 +101,7 @@ int main(){
 
     //  INICIO BLOQUE PARA HU1 Y HU2
 
+    printf("<form action=\"/cgi-bin/leerform2\" method=\"POST\">\n");
     printf("<div class=\"container\">\n");
     printf("<div class=\"container-renombrar\">\n");
     printf("<div class=\"container-titulo titulo-servidor\">\n");
@@ -126,8 +127,19 @@ int main(){
     printf("</h3>\n");
     printf("</div>\n");
     printf("</div>\n");
+    printf("<div class=\"campo bton\">\n");
+    printf("<select name=\"recursos\" id=\"combo\">\n");
+    printf("<option value="" selected=\"selected\"> -Selecciona-</option>\n");
+    printf("<option value=\"activar\"> Activar </option>\n");
+    printf("<option value=\"desactivar\"> Desactivar </option>\n");
+    printf("</select>\n");
+    printf("</div>\n");
+    printf("<div class=\"campo bton\">\n");
+    printf("<input type=\"submit\" name=\"enviar\" value=\"Aceptar\" class=\"boton\"/>\n");
     printf("</div>\n");
     printf("</div>\n");
+    printf("</div>\n");
+    printf("</form>\n");
 
     //  FIN BLOQUE PARA HU1 Y HU2
 

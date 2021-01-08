@@ -3,8 +3,6 @@ los metodos para HU8 estan sacando informacion de un smb.conf local, NO el origi
         -hay que reemplazar probando.txt por smb.conf original.
 
 
--revisar los metodos para las HUS 1y2
-
 -cambiar rutas de archivo original de hu3 directamente en la variable "archSamba"
 
 -cambiar rutas de archivo original de hu5 directamente en la variable "archSamba"
