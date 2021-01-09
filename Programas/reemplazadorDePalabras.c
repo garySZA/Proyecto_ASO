@@ -21,7 +21,7 @@ sprintf(buffer+(p-str), "%s%s", rep, aux);
   return replace_str(buffer, orig, rep);
 }
 
-int main(void)
+int main()
 {
   puts(replace_str("hola%2Fcd", "%2F", "/"));
   char *aux = replace_str("hola%2Fcd", "%2F", "/");
