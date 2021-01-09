@@ -82,6 +82,21 @@ int verifDirectorios(char *directorio)
     return esCorrecto;
 }
 
+//  METODO PARA CREAR ARCHIVO 
+void crearDir(char *ruta){
+    char aux[100] = "mkdir ";
+    strcat(aux, ruta);
+    char *algo = aux;
+
+    system(algo);
+}
+
+//  METODO PARA OTORGAR PERMISOS AL DIRECTORIO
+void darPermisos(char *ruta){
+    chmod(ruta,0777);
+}
+
+
 // Separar: separa datos del formulario
 
 void separar(char *cadena, char *linea, char separador)
@@ -122,6 +137,9 @@ int main(void)
     char shell[80];
 
     char *archivoSmb = "smb.conf";
+
+    setuid(0);
+    setgid(0);
 
     printf ("Content-type:text/html\n\n");
     printf("<head>\n");
@@ -216,11 +234,30 @@ int main(void)
                     //  CAMBIADO DE PERMISO
                     
                     extraer(archivoSmb, mensaje, usuario, ruta, "No");
+
+                    //  CREANDO EL DIRECTORIO PARA EL RECURSO
+                    char directorio[100] = "";
+                    strcpy(directorio,ruta);
+                    strcat(directorio, mensaje);
+                    crearDir(directorio);
+
+                    //  OTORGANDO PERMISOS AL DIRECTORIO
+                    darPermisos(directorio);
+
                 }else if (strcmp(clave,"lectura") == 0)
                 {
                     printf("<p> Permisos: Lectura");
                     //  CAMBIADO DE PERMISO
                     extraer(archivoSmb, mensaje, usuario, ruta, "Yes");
+
+                    //  CREANDO EL DIRECTORIO PARA EL RECURSO
+                    char directorio[100] = "";
+                    strcpy(directorio,ruta);
+                    strcat(directorio, mensaje);
+                    crearDir(directorio);
+
+                    //  OTORGANDO PERMISOS AL DIRECTORIO
+                    darPermisos(directorio);
                 }
             }else
             {

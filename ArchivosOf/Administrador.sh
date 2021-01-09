@@ -3,7 +3,7 @@
 #      BLOQUE DE COMPILACION
 
 gcc index.c -o index
-gcc leerform3.c -o leerform2
+gcc leerform2.c -o leerform2
 gcc leerform3.c -o leerform3
 gcc leerform5.c -o leerform5
 gcc leerform6.c -o leerform6
