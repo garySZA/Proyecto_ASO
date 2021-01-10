@@ -8,6 +8,11 @@
 
 
 void eliminar(char *ruta);
+void crearDir(char *ruta);
+void darPermisos(char *ruta);
+char *buscador(char *doc, char *cadena_a_Buscar);
+void moverDirectorio(char *anterior, char *nuevo, char *nombre);
+
 
 char *replace_str(char *str, char *orig, char *rep)
 {
@@ -40,8 +45,6 @@ void crearDir(char *ruta){
 void darPermisos(char *ruta){
     chmod(ruta,0777);
 }
-
-// ////////////////////////
 
 char *buscador(char *doc, char *cadena_a_Buscar)
 {
@@ -97,7 +100,7 @@ void moverDirectorio(char *anterior, char *nuevo, char *nombre){
   char archiNuevo[50] = "";
   strcpy(archiNuevo, preparando);
   strcat(archiNuevo, nombre);
-  printf(archiNuevo);
+  //printf(archiNuevo);
   darPermisos(archiNuevo);
 
 }

@@ -7,4 +7,4 @@ void darPermisos(char *ruta){
 
 int main(){
     darPermisos("./directorio");
-}
+    

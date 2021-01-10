@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 
 #include "./Libreria/milibreria.h"
 #include "./Libreria/miLibreria.c"
@@ -15,6 +17,13 @@ void escrituraDestino(char *cad, char *dest);
 //  PARA REEMPLAZAR LOS PERMISOS DEL RECURSO
 void extraer2(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por);
 
+
+//Metodos encargados de mover el directorio en caso que se cambie la ruta de un recurso
+void eliminar(char *ruta);
+void crearDir(char *ruta);
+void darPermisos(char *ruta);
+char *buscador2(char *doc, char *cadena_a_Buscar);
+void moverDirectorio(char *anterior, char *nuevo, char *nombre);
 
 //  BLOQUE METODOS PARA HU6
 
@@ -138,6 +147,96 @@ void separar(char *cadena, char *linea, char separador)
 
 }
 
+//Bloque metodos que se encargan de mover el directorio en caso de que se cambie la ruta de un recurso
+
+void crearDir(char *ruta){
+    //mkdir(ruta, O_CREAT);
+    char aux[100] = "mkdir ";
+    strcat(aux, ruta);
+    char *algo = aux;
+
+    system(algo);
+}
+
+void darPermisos(char *ruta){
+    chmod(ruta,0777);
+}
+
+char *buscador2(char *doc, char *cadena_a_Buscar)
+{
+
+    char temp[100];
+    char temp2[100];
+
+    char *aux = "";
+
+    FILE *f;
+    f = fopen(doc, "r");
+    if (f == NULL)
+    {
+        printf("No se ha podido encontrar el archivo... \n");
+        exit(1);
+    }
+    while (fgets(temp, 100, (FILE *)f))
+    {
+
+        if (strstr(temp, cadena_a_Buscar))
+        {
+            fgets(temp2, 100, (FILE *)f);
+            fgets(temp2, 100, (FILE *)f);
+            aux = temp2;
+            return aux;
+        }
+    }
+    fclose(f);
+
+}
+
+// cp -r rudelio/ prueba2/
+void moverDirectorio(char *anterior, char *nuevo, char *nombre){
+
+  char *rutaLimpia = replace_str(anterior, "\n", " ");
+
+  char *cp = "cp -r ";
+  char comando[50] = "";
+  strcpy(comando, cp);
+  strcat(comando,anterior);
+  strcat(comando, nuevo);
+  //strcmp(comando, nuevo);
+  //printf(comando);
+
+  //Ejecutando el comando para poder copiar el directorio a la nueva ruta
+  system(comando);
+
+  //Ejecutando comando para eliminar el directorio original
+  eliminar(anterior);
+
+  //Dando permisos al nuevo directorio
+  char *preparando = nuevo;
+  char archiNuevo[50] = "";
+  strcpy(archiNuevo, preparando);
+  strcat(archiNuevo, nombre);
+  //printf(archiNuevo);
+  darPermisos(archiNuevo);
+
+}
+
+//metodo para eliminar el directorio original
+void eliminar(char *ruta){
+  //char *comander = replace_str(ruta, "\t", "");
+  char *comander = "rm -r ";
+  char dir[50] = "";
+  strcpy(dir, comander);
+  strcat(dir, ruta);
+
+  //printf(dir);
+
+  system(dir);
+
+}
+
+//
+
 char *quitar(char *archivo, char *aBorrar, char *reemplazo){
     char *res = replace_str(archivo, aBorrar, reemplazo);
     return res;
@@ -157,6 +256,9 @@ int main(void)
     char sig[80];
 
     char *archivoSmb = "smb.conf";
+
+    setuid(0);
+    setgid(0);
 
     printf ("Content-type:text/html\n\n");
     printf("<head>\n");
@@ -284,6 +386,10 @@ int main(void)
 
                     //Eliminando los archivos auxiliares
                     unlink("probando2.txt");
+
+                    // invocando metodos para mover el directorio del recurso a la nueva ruta
+                    char *nuevaRuta = replace_str(buscador2(archivoSmb, reco),"path = ", "");
+                    moverDirectorio(nuevaRuta,quitar(clave,"%2F","/"), mensajeLimpio);
 
                 }else{
                     if(strcmp(usuario,"ambos") == 0){
