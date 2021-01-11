@@ -171,10 +171,10 @@ void ejecutor(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por
     printf(destinoOr);
     
     char *ruta2 = sacarRuta(doc, cadena_a_Buscar);
-    //printf(ruta2);
+    printf(ruta2);
     
     char *nombreLimpio = removerCaracteres(cadena_a_Buscar, "[]");
-    //printf(nombreLimpio);
+    printf(nombreLimpio);
 
     //ejecutor2(ruta2, nombreLimpio, reemplazar_por);
 
