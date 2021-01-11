@@ -87,7 +87,6 @@ void moverDirectorio(char *anterior, char *nuevo, char *nombre){
   strcat(comando,anterior);
   strcat(comando," ");
   strcat(comando, nuevo);
-  //strcmp(comando, nuevo);
   //printf(comando);
 
   //Ejecutando el comando para poder copiar el directorio a la nueva ruta

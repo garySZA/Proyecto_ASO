@@ -10,13 +10,15 @@
 
 #define MAXLEN 1024
 
+//variable global
+char *destinoOr;
+
 //  LISTA DE METODOS PARA HU6
 void extraer1(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por);
 void escrituraDestino(char *cad, char *dest);
 
 //  PARA REEMPLAZAR LOS PERMISOS DEL RECURSO
 void extraer2(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por);
-
 
 //Metodos encargados de mover el directorio en caso que se cambie la ruta de un recurso
 void eliminar(char *ruta);
@@ -70,7 +72,11 @@ char *removerCaracteres(char *cadena, char *caracteres){
 
 char *sacarRuta(char *doc, char *cadena_a_Buscar){
     char *ruta2 = replace_str(buscador2(doc, cadena_a_Buscar),"path = ", "");
-    return ruta2;
+    char *ruta3 = "";
+    char env[30] = "";
+    strcpy(env, procederAQuitar(ruta2));
+    ruta3 = env;
+    return ruta3;
 }
 
 void extraer1(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por)
@@ -162,15 +168,15 @@ char *extraerRutaAnt(char *doc, char *cadena_a_Buscar){
 }
 
 void ejecutor(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por){
-    
-    printf(reemplazar_por);
+    printf(destinoOr);
     
     char *ruta2 = sacarRuta(doc, cadena_a_Buscar);
-    replace_str(ruta2, "\0", "");
-    printf(ruta2);
+    //printf(ruta2);
     
     char *nombreLimpio = removerCaracteres(cadena_a_Buscar, "[]");
-    printf(nombreLimpio);
+    //printf(nombreLimpio);
+
+    //ejecutor2(ruta2, nombreLimpio, reemplazar_por);
 
     //moverDirectorio(ruta2,reemplazar_por, nombreLimpio);
 }
@@ -313,32 +319,24 @@ void moverDirectorio(char *anterior, char *nuevo, char *nombre){
   char comando[50] = "";
   strcpy(comando, cp);
   strcat(comando,anterior);
-  strcat(comando,nombre);
-  strcat(comando, "/");
   strcat(comando," ");
   strcat(comando, nuevo);
-  //strcmp(comando, nuevo);
-  printf(comando);
+  //printf(comando);
 
   //Ejecutando el comando para poder copiar el directorio a la nueva ruta
-  //ac system(comando);
+  system(comando);
 
   //Ejecutando comando para eliminar el directorio original
-    char rutaAnt[50] ="";
-    strcpy(rutaAnt, anterior);
-    strcat(rutaAnt, nombre);
-    strcat(rutaAnt,"/");
-    printf(rutaAnt);
-    //ac eliminar(rutaAnt);
+  //printf(anterior);
+  eliminar(anterior);
 
   //Dando permisos al nuevo directorio
   char *preparando = nuevo;
   char archiNuevo[50] = "";
   strcpy(archiNuevo, preparando);
   strcat(archiNuevo, nombre);
-  //printf(archiNuevo);
-  //ac darPermisos(archiNuevo);
-
+  printf(archiNuevo);
+  darPermisos(archiNuevo);
 }
 
 //metodo para eliminar el directorio original
@@ -435,6 +433,8 @@ int main(void)
     //char *ruta = quitar(clave,"%2F","/");
 
     char *ruta2 = replace_str(clave, "%2F", "/");
+
+    destinoOr = ruta2;
 
     //  INVOCANDO METODOS
 

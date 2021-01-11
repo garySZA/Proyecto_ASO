@@ -17,3 +17,6 @@ los metodos para HU8 estan sacando informacion de un smb.conf local, NO el origi
 
 -para el recurso de "printers" se le niega la opcion de modificar sus permisos debido a que no tiene, pero eso se da solo mediante la restriccion de que si el recurso al que se
 quiere modificar los permisos es distinto de "printers", pero si se llega a cambiar el nombre del recurso "printers" esta restriccion quedaria sin efecto....
+
+-problemas con los directorios recibidos apartir de los metodos que se encargan de 
+escribir la nueva ruta al momento de cambiarla
