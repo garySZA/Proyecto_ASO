@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador Samba</title>
+    <link rel="stylesheet" href="Styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Play&family=Source+Sans+Pro:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+    </head>
+<body>
+    <!-- HU1 y HU2-->
+
+    <form action="/cgi-bin/leerform1" method="POST">
+        <div class="container">
+            <div class="container-renombrar">
+                <div class="container-titulo titulo-servidor">
+                    <h3> Servidor Samba </h3>
+                </div>
+                <div class="container-elementos-status">
+                    <div class="campo">
+                        <h3> Situacion del servidor: </h3>
+                    </div>
+                    <div class="campo opcion2">
+                        <h3> Instalado/No instalado </h3>
+                    </div>
+                    <div class="campo">
+                        <h3> Status: </h3>
+                    </div>
+                    <div class="campo opcion2">
+                        <h3> Activo/Inactivo </h3>
+                    </div>
+                </div>
+                <div class="campo bton">
+                    <select name="recursos" id="combo">
+                        <option value="" selected="selected"> -Selecciona-</option>
+                        <option value="lectura"> Activar </option>
+                        <option value="ambos"> Desactivar </option>
+                    </select>
+                </div>
+                <div class="campo bton">
+                    <input type="submit" name="enviar" value="Aceptar" class="boton"/>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- HU3-->
+    
+    <form action="/cgi-bin/leerform3" method="POST">
+        <div class="container">
+            <div class="container-renombrar">
+                <div class="container-titulo">
+                    <h3> Cambiar grupo de trabajo </h3>
+                </div>
+                <div class="container-elementos">
+                    <div class="campo">
+                        <h3> Grupo de trabajo: </h3>
+                    </div>
+                    <div class="campo opcion2">
+                        <h3> LABINFSIS </h3>
+                    </div>
+                    <div class="campo">
+                        <h3> Nuevo grupo de trabajo: </h3>
+                    </div>
+                    <div class="campo opcion">
+                        <input class="input" type="text" name="nombre" value="" placeholder="Ingrese un nuevo grupo"/>
+                    </div>
+                </div>
+                <div class="campo bton">
+                    <input type="submit" name="enviar" value="Cambiar" class="boton"/>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- HU5-->
+
+    <form action="/cgi-bin/leerform5" method="POST">
+        <div class="container">
+            <div class="container-renombrar">
+                <div class="container-titulo">
+                    <h3> Agregar nuevo recurso compartido </h3>
+                </div>
+                <div class="container-elementos">
+                    <div class="campo">
+                        <h3> Nombre del recurso: </h3>
+                    </div>
+                    <div class="campo opcion">
+                        <input class="input" type="text" name="nombre" value="" placeholder="Ingrese un nombre valido"/>
+                    </div>
+                    <div class="campo">
+                        <h3> Permisos del recurso nuevo: </h3>
+                    </div>
+                    <div class="campo opcion">
+                        <select name="recursos" id="combo">
+                            <option value="" selected="selected"> -Selecciona-</option>
+                            <option value="lectura"> Solo lectura </option> </option>
+                            <option value="ambos"> Lectura y escritura </option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <h3> Ingresar ruta del recurso nuevo: </h3>
+                    </div>
+                    <div class="campo opcion">
+                        <input class="input" type="text" name="nombre" value="" placeholder="Ingrese una ruta valida"/>
+                    </div>
+                </div>
+                <div class="campo bton">
+                    <input type="submit" name="enviar" value="crear" class="boton"/>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- HU6-->
+    <form action="/cgi-bin/leerform6" method="POST">
+        <div class="container">
+            <div class="container-renombrar">
+                <div class="container-titulo">
+                    <h3> Renombrar Recurso compartido </h3>
+                </div>
+                <div class="contenedor-nombre-ruta">
+                    <div class="contenedor-nombre">
+                        <p class="parrafo">profiles</p>
+                        <p class="parrafo">users</p>
+                        <p class="parrafo">groups</p>
+                        <p class="parrafo">printers</p>
+                        <p class="parrafo">documentos</p>
+                        <p class="parrafo">archivos</p>
+                    </div>
+                    <div class="contenedor-ruta">
+                        <p class="parrafo">path = %H</p>
+                        <p class="parrafo">path = /home</p>
+                        <p class="parrafo">path = /home/groups</p>
+                        <p class="parrafo">path = /var/tmp</p>
+                        <p class="parrafo">path = /opt/documentos</p>
+                        <p class="parrafo">path = /opt/otros</p>
+                        
+                    </div>
+                </div>
+                <div class="container-elementos">
+                    <div class="campo">
+                        <h3> Seleccionar recurso compartido: </h3>
+                    </div>
+                    <div class="campo opcion">
+                        <select name="recursos" id="combo">
+                            <option value="" selected="selected"> -Selecciona-</option>
+                            <option value="opcion1"> Solo lectura </option> </option>
+                            <option value="opcion1"> Lectura y escritura </option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <h3> Permisos del recurso: </h3>
+                    </div>
+                    <div class="campo opcion">
+                        <select name="recursos" id="combo">
+                            <option value="" selected="selected"> -Selecciona-</option>
+                            <option value="opcion1"> Solo lectura </option> </option>
+                            <option value="opcion1"> Lectura y escritura </option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <h3> Ingresar nueva ruta: </h3>
+                    </div>
+                    <div class="campo opcion">
+                        <input class="input" type="text" name="nombre" value="" placeholder="Ingrese un nuevo nombre"/>
+                    </div>
+                </div>
+                <div class="campo bton">
+                    <input type="submit" name="enviar" value="Guardar cambios" class="boton"/>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- HU7-->
+    <form action="/cgi-bin/leerform" method="POST">
+        <div class="container">
+            <div class="container-renombrar">
+                <div class="container-titulo">
+                    <h3> Borrar recurso compartido </h3>
+                </div>
+                <div class="container-elementos container-elementos-reducidos">
+                    <div class="campo">
+                        <h3> Seleccionar recurso compartido: </h3>
+                    </div>
+                    <div class="campo opcion">
+                        <select name="recursos" id="combo">
+                            <option value="" selected="selected"> -Selecciona-</option>
+                            <option value="opcion1"> opcion1 </option>
+                            <option value="opcion1"> opcion2 </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="campo bton">
+                    <input type="submit" name="enviar" value="Borrar" class="boton"/>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- HU8-->
+    <form action="/cgi-bin/leerform" method="POST">
+        <div class="container">
+            <div class="container-renombrar">
+                <div class="container-titulo">
+                    <h3> Renombrar Recurso compartido </h3>
+                </div>
+                <div class="container-elementos">
+                    <div class="campo">
+                        <h3> Seleccionar recurso compartido: </h3>
+                    </div>
+                    <div class="campo opcion">
+                        <select name="recursos" id="combo">
+                            <option value="" selected="selected"> -Selecciona-</option>
+                            <option value="opcion1"> opcion1 </option>
+                            <option value="opcion1"> opcion2 </option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <h3> Seleccionar recurso compartido: </h3>
+                    </div>
+                    <div class="campo opcion">
+                        <input class="input" type="text" name="nombre" value="" placeholder="Ingrese un nuevo nombre"/>
+                    </div>
+                </div>
+                <div class="campo bton">
+                    <input type="submit" name="enviar" value="Cambiar nombre" class="boton"/>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="position-fixed">
+        <button class="boton" onclick="location.href='./index.html'">volver</button>
+    </div>
+</body>
+</html>
