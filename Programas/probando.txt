@@ -80,7 +80,8 @@
 
 [Especial]
 	comment = archivos especiales
-	path = /home/garys/Desktop/ Especial	browseable = Yes
+	path = /home/garys/Desktop/ Especial
+	browseable = Yes
 	read only = No
 	#valid users = publica
 	create mask = 0664

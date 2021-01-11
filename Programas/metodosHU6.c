@@ -37,7 +37,7 @@ void extraer(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por)
 
     char *nomLimp = replace_str(cadena_a_Buscar, "[", "");
     char *nomLimp2 = replace_str(nomLimp, "]", "");
-    printf(nomLimp2);
+    //printf(nomLimp2);
 
     char ruta[100] = "\tpath = ";
     strcat(ruta, reemplazar_por);
@@ -65,6 +65,7 @@ void extraer(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por)
             char concat[50] = "";
             strcpy(concat, ruta);
             strcat(concat, nomLimp2);
+            strcat(concat, "\n");
             rutaLista = concat;
             escrituraDestino(rutaLista, dest);
             fgets(temp, 1024, (FILE *)f);
@@ -137,7 +138,7 @@ int main()
     
 
     //  PRUEBAS PARA CAMBIAR RUTA
-    char *probando = "/home/garys/Desktop/";
+    char *probando = "/home/garys/Desktop/ ";
     extraer("smb.conf", "probando.txt", "[Especial]", probando);
     
     /*

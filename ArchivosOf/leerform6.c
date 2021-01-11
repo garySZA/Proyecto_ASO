@@ -12,6 +12,7 @@
 
 //variable global
 char *destinoOr;
+char *nombreRecurso;
 
 //  LISTA DE METODOS PARA HU6
 void extraer1(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por);
@@ -36,7 +37,7 @@ char *removerCaracteres(char *cadena, char *caracteres);
 //otros
 void quitaespacios(char cadena [100], char cadenasin[100]);
 char *procederAQuitar(char *ruta);
-void ejecutor(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por);
+void ejecutor(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por, char *nombre);
 
 //  BLOQUE METODOS PARA HU6
 
@@ -115,17 +116,6 @@ void extraer1(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por
     }
     fclose(f);
 
-    //metodos para mover el directorio
-    //char *ruta2 = sacarRuta(doc, cadena_a_Buscar);
-    //printf("////////");
-    //printf(ruta2);
-    //char *nombreLimpio = removerCaracteres(cadena_a_Buscar, "[]");
-    //printf(nombreLimpio);
-
-    //printf(reemplazar_por);
-    
-    //moverDirectorio(ruta2,"/home/garys/Desktop/", "documentos");
-
 }
 
 void quitaespacios(char cadena [100], char cadenasin[50])
@@ -167,14 +157,23 @@ char *extraerRutaAnt(char *doc, char *cadena_a_Buscar){
     return nuevaRuta2;
 }
 
-void ejecutor(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por){
-    printf(destinoOr);
-    
+void ejecutor(char *doc, char *dest, char *cadena_a_Buscar, char *reemplazar_por, char *nombre){
+
+    char *destin = "";
+    char destAr[50] = "";
+    strcat(destAr, destinoOr);
+    strcat(destAr, removerCaracteres(nombre, "%0D0X0.0000000000001P-1022A "));
+    destin = destAr;
+    printf(destin);
+
+    //printf(destinoOr);
+        
+    //printf(quitar(nombreRecurso, "%0D0X1.63225656D6F68P+629 ",""));
+
     char *ruta2 = sacarRuta(doc, cadena_a_Buscar);
     printf(ruta2);
-    
-    char *nombreLimpio = removerCaracteres(cadena_a_Buscar, "[]");
-    printf(nombreLimpio);
+    //char *nombreLimpio = removerCaracteres(cadena_a_Buscar, "[]");
+    //printf(nombreLimpio);
 
     //ejecutor2(ruta2, nombreLimpio, reemplazar_por);
 
@@ -424,6 +423,8 @@ int main(void)
     separar(clave, inputBuffer, '=');
     separar(clave, inputBuffer, '&');
 
+    nombreRecurso = mensaje;
+    
     //char *aux = replace_str(usuario, "%2F", "/");
     char *mensajeLimpio = quitar(mensaje, "%0D%0A", "");
     char reco[100] = "[";
@@ -496,7 +497,7 @@ int main(void)
 
                     //  CAMBIAR RUTA
                     extraer1(archivoSmb, "probando2.txt",reco, ruta2);
-                    ejecutor(archivoSmb, "probando2.txt",reco, quitar(clave,"%2F","/"));
+                    ejecutor(archivoSmb, "probando2.txt",reco, quitar(clave,"%2F","/"), mensaje);
 
                     printf("<br>Cambio Realizado: Exitoso");
                     printf("<p>Recurso modificado: %s", quitar(mensaje, "%0D%0A", ""));
