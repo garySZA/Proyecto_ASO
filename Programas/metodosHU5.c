@@ -19,6 +19,7 @@ void extraer(char *doc, char *nombre, char *comentario, char *ruta, char *permis
 
     char path[100] = "\tpath = ";
     strcat(path, ruta);
+    strcat(path, nombre);
     strcat(path, "\n");
 
     char browseable[100] = "\tbrowseable = Yes\n";
@@ -30,6 +31,7 @@ void extraer(char *doc, char *nombre, char *comentario, char *ruta, char *permis
     char valid[100] = "\t#valid users = publica\n";
     char mask[100] = "\tcreate mask = 0664\n";
     char directory[100] = "\tdirectory mask = 0755\n";
+
 
     FILE *fp;
     //char cadena[] = "Mostrando el uso de fputs en un fichero.\n";
@@ -48,5 +50,5 @@ void extraer(char *doc, char *nombre, char *comentario, char *ruta, char *permis
 int main()
 {
     // archivo, nombre del recurso, comentario, ruta, permisos
-    extraer("probando.txt", "Especial", "archivos especiales", "/home/garys/Desktop/", "Yes");
+    extraer("smb.conf", "Especial", "archivos especiales", "/home/garys/Desktop/", "Yes");
 }

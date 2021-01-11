@@ -1,0 +1,9 @@
+
+[Especial]
+	comment = archivos especiales
+	path = /home/garys/Desktop/
+	browseable = Yes
+	read only = Yes
+	#valid users = publica
+	create mask = 0664
+	directory mask = 0755

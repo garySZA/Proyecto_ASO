@@ -29,6 +29,7 @@ void extraer(char *doc, char *nombre, char *comentario, char *ruta, char *permis
 
     char path[100] = "\tpath = ";
     strcat(path, ruta);
+    strcat(path, nombre);
     strcat(path, "\n");
 
     char browseable[100] = "\tbrowseable = Yes\n";
