@@ -85,8 +85,6 @@ void moverDirectorio(char *anterior, char *nuevo, char *nombre){
   char comando[50] = "";
   strcpy(comando, cp);
   strcat(comando,anterior);
-  strcat(comando,nombre);
-  strcat(comando, "/");
   strcat(comando," ");
   strcat(comando, nuevo);
   //strcmp(comando, nuevo);
@@ -96,19 +94,15 @@ void moverDirectorio(char *anterior, char *nuevo, char *nombre){
   system(comando);
 
   //Ejecutando comando para eliminar el directorio original
-  char rutaAnt[50] ="";
-  strcpy(rutaAnt, anterior);
-  strcat(rutaAnt, nombre);
-  strcat(rutaAnt,"/");
-  printf(rutaAnt);
-  eliminar(rutaAnt);
+  //printf(anterior);
+  eliminar(anterior);
 
   //Dando permisos al nuevo directorio
   char *preparando = nuevo;
   char archiNuevo[50] = "";
   strcpy(archiNuevo, preparando);
   strcat(archiNuevo, nombre);
-  //printf(archiNuevo);
+  printf(archiNuevo);
   darPermisos(archiNuevo);
 
 }
@@ -130,17 +124,21 @@ void eliminar(char *ruta){
 int main()
 {
     //char *posible = buscador("smb.conf", "[documentos]");
-    char *ruta = replace_str(buscador("smb.conf", "[documentos]"),"path = ", "");
+    char *ruta = replace_str(buscador("smb.conf", "[Especial]"),"path = ", "");
     //strcat(ruta, "/");
-    printf(ruta);
+    //printf(ruta);
 
     //eliminar(ruta);
 
     // Resultado > /home/garys/Desktop/ /etc/ documentos
 
-    //moverDirectorio("/home/garys/Desktop/","/home/garys/Desktop/Carps/", "rudelio");
+    moverDirectorio(ruta,"/home/garys/Desktop/Carps/", "Especial");
     
     //printf(buscador("smb.conf", "[documentos]"));
+
+  //lo que me devuelve ahora        /home/garys/Desktop/Especial
+
+
 
 }
 
